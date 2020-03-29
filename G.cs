@@ -60,5 +60,19 @@ namespace HNS
             sb.Draw(pixel, pos, null, c, dir, new Vector2(0.5f, 1f),
                 new Vector2(thicc, l), 0, 0);
         }
+        //Make Random Position Vectors while the position not on obstacle
+        public static Vector2 GetRandPos()
+        {
+            Random rand = new Random();
+            Vector2 v = new Vector2(rand.Next(W * mapScale), rand.Next(H * mapScale));
+            while (true)
+                if (G.map[v].ToString() == "Obstacle")
+                {
+                    v.X = rand.Next(W * mapScale);
+                    v.Y = rand.Next(H * mapScale);
+                }
+                else
+                    return v;
+        }
     }
 }

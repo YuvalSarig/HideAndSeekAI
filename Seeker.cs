@@ -29,25 +29,25 @@ namespace HNS
 
         public override void draw()
         {
-            //float angele = Rotation + (float)Math.PI + (float)Math.PI / 6;
-            //Matrix mat = Matrix.CreateRotationZ(angele);
-            //Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
-            //Vector2 temp = Position;
-            //while (G.map[temp].ToString() != "Obstacle" && (Position - temp).Length() <= 300)
-            //{
-            //    temp += step * 2;
-            //}
-            G.drawVec(Rotation + (float)Math.PI + (float)Math.PI / 6, Position, Color.Blue, 300, 3);
+            float angele = Rotation + (float)Math.PI / 6;
+            Matrix mat = Matrix.CreateRotationZ(angele);
+            Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
+            Vector2 temp = Position;
+            while (G.map[temp].ToString() != "Obstacle" && (Position - temp).Length() <= 300)
+            {
+                temp += step * 2;
+            }
+            G.drawVec(Rotation + (float)Math.PI + (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
 
-            //angele = Rotation + (float)Math.PI - (float)Math.PI / 6;
-            //mat = Matrix.CreateRotationZ(angele);
-            //step = Vector2.Transform(Vector2.UnitY, mat);
-            //temp = Position;  
-            //while (G.map[temp].ToString() != "Obstacle" && (Position - temp).Length() <= 300)
-            //{
-            //    temp += step * 2;
-            //}
-            G.drawVec(Rotation + (float)Math.PI - (float)Math.PI / 6, Position, Color.Blue, 300, 3);
+            angele = Rotation - (float)Math.PI / 6;
+            mat = Matrix.CreateRotationZ(angele);
+            step = Vector2.Transform(Vector2.UnitY, mat);
+            temp = Position;  
+            while (G.map[temp].ToString() != "Obstacle" && (Position - temp).Length() <= 300)
+            {
+                temp += step * 2;
+            }
+            G.drawVec(Rotation + (float)Math.PI - (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
             base.draw();
         }
     }

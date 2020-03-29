@@ -45,13 +45,13 @@ namespace HNS
             seeker = new Seeker(
                 new UserKeys(Keys.A, Keys.D, Keys.W, Keys.S),
                 Content.Load<Texture2D>("seeker"),
-                       new Vector2(1, 1),
+                       G.GetRandPos(),
                        null, Color.White, 0, new Vector2(96, 106),
                        new Vector2(0.3f), 0, 0);
             hider = new Hider(
                 new UserKeys(Keys.Left, Keys.Right, Keys.Up, Keys.Down),
                 Content.Load<Texture2D>("hider"),
-                       new Vector2(1, 1),
+                       G.GetRandPos(),
                        null, Color.White, 0, new Vector2(104, 124),
                        new Vector2(0.3f), 0, 0);
             IFocous[] focous = new IFocous[2];
@@ -72,18 +72,18 @@ namespace HNS
             string s;
             if (G.v.IsView(seeker.Position, hider.Position))
             {
-                s = "IsView: True,";
+                s = "Hider View The Seeker: True,";
             }
             else
             {
-                s = "IsView: false,";
+                s = "Hider View The Seeker: false,";
             }
             if (G.v.FindHider(seeker.Position, seeker.Rotation - (float)Math.PI / 6, hider.Position))
             {
-                s += " FindHider: true";
+                s += " Hider Found: true";
             }
             else
-                s += " FindHider: false";
+                s += " Hider Found: false";
             Window.Title = s;
             Event_Update?.Invoke();
 

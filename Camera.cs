@@ -42,6 +42,7 @@ namespace HNS
                 }
             }
             pos = sum;
+
             if (max > (vp.Height / 2) - 100f && zoom > 0.5f)
             {
                 zoom = ((vp.Height / 2) - 100f) / max;

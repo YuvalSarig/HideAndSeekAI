@@ -14,7 +14,7 @@ namespace HNS
     {
         List<Vector2> cord;
         List<Vector2> cordPos;
-        List<int> LastPos;
+        Vector2 LastPos;
         public Hider(BaseKeys keys, Texture2D texture, Vector2 position,
           Rectangle? sourceRectangle, Color color,
           float rotation, Vector2 origin, Vector2 scale,
@@ -52,7 +52,8 @@ namespace HNS
         private void update()
         {
             //fillCordPos();
-            LastPos = G.maph.SetHiderOnMap((int)Position.X, (int)Position.Y, LastPos);
+            G.maph.SetHiderOnMap((int)Position.X, (int)Position.Y, LastPos);
+            LastPos = Position;
         }
 
     }

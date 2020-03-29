@@ -12,43 +12,40 @@ namespace HNS
     class MapHider
     {
         int[] c;
-        int HiderSize = 139;
         public MapHider()
         {
             c = new int[G.W * G.H * G.mapScale * G.mapScale];
 
         }
 
-        public void initMap(List<int> LastPos)
+        public void initMap(Vector2 LastPos)
         {
-            if (LastPos != null)
-                foreach (int item in LastPos)
-                {
-                    c[item] = 0;
-                }
-
-
-        }
-
-        public List<int> SetHiderOnMap(int x, int y, List<int> LastPos)
-        {
-            List<int> a = new List<int>();
-            Console.WriteLine(LastPos);
-            Console.WriteLine((x) + " " + (y));
-            initMap(LastPos);
-
-            for (int i = 0; i < G.H * G.mapScale; i++)
+            int x = (int)LastPos.X, y = (int)LastPos.Y;
+            for (int i = (int)(-124 * 0.3); i < 121 * 0.3; i++)
             {
-                for (int j = 0; j < G.W * G.mapScale; j++)
+                for (int j = (int)(-104 * 0.3); j < 113 * 0.3; j++)
                 {
-                    if (i < y + 121 * 0.3 && i > y - 124 * 0.3 && j < x + 113 * 0.3 && j > x - 104 * 0.3)
+                    if (0 < i + y && G.H * G.mapScale > i + y && 0 < j + x && G.W * G.mapScale > j + x)
                     {
-                        c[i * G.W + j] = 1;
-                        a.Add(i * G.W + j);
+                        c[(i + y) * G.W + (j + x)] = 0;
                     }
                 }
             }
-            return a;
+        }
+
+        public void SetHiderOnMap(int x, int y, Vector2 LastPos)
+        {
+            initMap(LastPos);
+            for (int i = (int)(-124 * 0.3); i < 121 * 0.3; i++)
+            {
+                for (int j = (int)(-104 * 0.3); j < 113 * 0.3; j++)
+                {
+                    if ( 0 < i + y && G.H * G.mapScale > i + y && 0 < j + x && G.W * G.mapScale > j + x)
+                    {
+                        c[(i + y)* G.W + (j + x)] = 1;
+                    }
+                }
+            }
         }
 
         public bool IsHiderFound(Vector2 v)
