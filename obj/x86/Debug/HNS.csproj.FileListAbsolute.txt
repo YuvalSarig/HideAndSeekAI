@@ -1,0 +1,52 @@
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\Content\hider.xnb
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\Content\map2.xnb
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\Content\mask.xnb
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\Content\seeker.xnb
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\HNS.exe
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\HNS.pdb
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.dll
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.xml
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\yuval\כיתה_יג\HNS\HNS\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\yuval\כיתה_יג\HNS\HNS\obj\x86\Debug\HNS.csprojAssemblyReference.cache
+C:\yuval\כיתה_יג\HNS\HNS\obj\x86\Debug\HNS.csproj.CopyComplete
+C:\yuval\כיתה_יג\HNS\HNS\obj\x86\Debug\HNS.exe
+C:\yuval\כיתה_יג\HNS\HNS\obj\x86\Debug\HNS.pdb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\hider.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\map2.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\mask.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\seeker.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\HNS.exe
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\HNS.pdb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.dll
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.xml
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.csprojAssemblyReference.cache
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.csproj.CopyComplete
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.exe
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.pdb

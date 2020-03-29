@@ -1,0 +1,109 @@
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+namespace HNS
+{
+
+    public class Game1 : Game
+    {
+        GraphicsDeviceManager graphics;
+        Seeker seeker;
+        Hider hider;
+        Drawer map;
+        public static event DlgDraw Event_Draw;
+        public static event DlgUpdate Event_Update;
+        Camera cam;
+
+        public Game1()
+        {
+            graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1280;
+
+            graphics.ApplyChanges();
+            Content.RootDirectory = "Content";
+        }
+
+
+        protected override void Initialize()
+        {
+
+            IsMouseVisible = true;
+            base.Initialize();
+        }
+
+
+        protected override void LoadContent()
+        {
+            G.init(GraphicsDevice, Content);
+            map = new Drawer(Content.Load<Texture2D>("map2"),
+                       new Vector2(0, 0),
+                       null, Color.White, 0, new Vector2(0),
+                       new Vector2(G.mapScale), SpriteEffects.None, 0);
+            seeker = new Seeker(
+                new UserKeys(Keys.A, Keys.D, Keys.W, Keys.S),
+                Content.Load<Texture2D>("seeker"),
+                       new Vector2(1, 1),
+                       null, Color.White, 0, new Vector2(96, 106),
+                       new Vector2(0.3f), 0, 0);
+            hider = new Hider(
+                new UserKeys(Keys.Left, Keys.Right, Keys.Up, Keys.Down),
+                Content.Load<Texture2D>("hider"),
+                       new Vector2(1, 1),
+                       null, Color.White, 0, new Vector2(104, 124),
+                       new Vector2(0.3f), 0, 0);
+            IFocous[] focous = new IFocous[2];
+            focous[0] = seeker;
+            focous[1] = hider;
+            cam = new Camera(focous, new Viewport(0, 0, G.W, G.H), Vector2.Zero);
+        }
+
+
+        protected override void UnloadContent()
+        {
+
+        }
+
+
+        protected override void Update(GameTime gameTime)
+        {
+            string s;
+            if (G.v.IsView(seeker.Position, hider.Position))
+            {
+                s = "IsView: True,";
+            }
+            else
+            {
+                s = "IsView: false,";
+            }
+            if (G.v.FindHider(seeker.Position, seeker.Rotation - (float)Math.PI / 6, hider.Position))
+            {
+                s += " FindHider: true";
+            }
+            else
+                s += " FindHider: false";
+            Window.Title = s;
+            Event_Update?.Invoke();
+
+
+            base.Update(gameTime);
+        }
+
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.Black);
+
+
+            G.sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
+                null, null, null, null, cam.Mat);
+
+            Event_Draw?.Invoke();
+            G.sb.End();
+
+            base.Draw(gameTime);
+        }
+    }
+}
