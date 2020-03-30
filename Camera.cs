@@ -25,6 +25,8 @@ namespace HNS
             this.zoom = zoom;
             Game1.Event_Update += update;
         }
+
+        
         void update()
         {
             Vector2 sum = new Vector2();
@@ -41,21 +43,14 @@ namespace HNS
                     max = Vector2.Distance(sum, focus[i].Position);
                 }
             }
-            pos = sum;
 
-            if (max > (vp.Height / 2) - 100f && zoom > 0.5f)
-            {
-                zoom = ((vp.Height / 2) - 100f) / max;
-            }
-            else if (max < vp.Height - 100f && zoom < 0.5f)
-            {
-                zoom = ((vp.Height / 2) - 100f) / max;
-            }
+            pos = Vector2.Lerp(pos, sum, 0.03f) ;
+            
+            zoom = MathHelper.Clamp((Game1.H / 2 - 100f) / max, 0.7f, 1f);
 
             Mat = Matrix.CreateTranslation(-pos.X, -pos.Y, 0) *
                 Matrix.CreateScale(zoom) *
-                Matrix.CreateTranslation(vp.Width / 2, vp.Height / 2, 0);
-
+                Matrix.CreateTranslation(vp.Width / 2, vp.Height / 2, 0);    
         }
     }
 }

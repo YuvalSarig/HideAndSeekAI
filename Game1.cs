@@ -15,12 +15,14 @@ namespace HNS
         public static event DlgDraw Event_Draw;
         public static event DlgUpdate Event_Update;
         Camera cam;
+        public static int W = 1920, H = 1080;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 720;
-            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = H;
+            graphics.PreferredBackBufferWidth = W;
+            Window.AllowUserResizing = true;
 
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
@@ -57,7 +59,7 @@ namespace HNS
             IFocous[] focous = new IFocous[2];
             focous[0] = seeker;
             focous[1] = hider;
-            cam = new Camera(focous, new Viewport(0, 0, G.W, G.H), Vector2.Zero);
+            cam = new Camera(focous, new Viewport(0, 0, Game1.W, Game1.H), Vector2.Zero);
         }
 
 

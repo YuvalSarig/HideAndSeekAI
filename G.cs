@@ -19,14 +19,11 @@ namespace HNS
         public static Random rnd;
         public static SpriteBatch sb;
         public static KeyboardState ks;
-        public static int W, H;
         public static Texture2D pixel;
         public static View v;
 
         public static void init(GraphicsDevice gd, ContentManager Content)
         {
-            W = 1280;
-            H = 720;
             map = new Map(Content.Load<Texture2D>("mask"));
             mapScale = 2;
             rnd = new Random(0);
@@ -64,12 +61,12 @@ namespace HNS
         public static Vector2 GetRandPos()
         {
             Random rand = new Random();
-            Vector2 v = new Vector2(rand.Next(W * mapScale), rand.Next(H * mapScale));
+            Vector2 v = new Vector2(rand.Next(Game1.W * mapScale), rand.Next(Game1.H * mapScale));
             while (true)
                 if (G.map[v].ToString() == "Obstacle")
                 {
-                    v.X = rand.Next(W * mapScale);
-                    v.Y = rand.Next(H * mapScale);
+                    v.X = rand.Next(Game1.W * mapScale);
+                    v.Y = rand.Next(Game1.H * mapScale);
                 }
                 else
                     return v;
