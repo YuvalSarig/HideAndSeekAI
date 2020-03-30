@@ -49,11 +49,12 @@ namespace HNS
             }
         }
 
-        private void update()
+        public override void update()
         {
             //fillCordPos();
             G.maph.SetHiderOnMap((int)Position.X, (int)Position.Y, LastPos);
             LastPos = Position;
+            base.update();
         }
 
     }

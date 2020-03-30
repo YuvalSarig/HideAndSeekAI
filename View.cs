@@ -9,11 +9,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HNS
 {
-    class View
+    class View 
     {
 
         public View()
         {
+            
         }
 
         Vector2 GetVector(Vector2 SeekerPos, Vector2 HiderPos)
@@ -41,6 +42,7 @@ namespace HNS
 
         public bool FindHider(Vector2 SeekerPos, float rot, Vector2 HiderPos)
         {
+            
             float angele = rot;
             Matrix mat = Matrix.CreateRotationZ(angele);
             Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
@@ -49,10 +51,11 @@ namespace HNS
             int see = 60;
             for (int i = 0; i < see; i++)
             {
-
                 while (G.map[temp].ToString() != "Obstacle" && (SeekerPos - temp).Length() <= 300)
                 {
                     temp += step * 2;
+
+
                     if (G.maph.IsHiderFound(temp))
                     {
                         return true;

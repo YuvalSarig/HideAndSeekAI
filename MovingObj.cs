@@ -26,13 +26,12 @@ namespace HNS
            effects, layerDepth)
         {
             v = new View();
-            Game1.Event_Update += update;
             this.keys = keys;
             keys.WhoAmI(this);
         }
         #endregion
 
-        private void update()
+        public virtual void update()
         {
             Matrix mat;
             if (keys.Left())

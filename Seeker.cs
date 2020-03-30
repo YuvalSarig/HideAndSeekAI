@@ -20,34 +20,42 @@ namespace HNS
            rotation, origin, scale,
            effects, layerDepth)
         {
-            Game1.Event_Update += update;
-        }
-        private void update()
-        {
 
+            Game1.Event_Update += update;
+
+        }
+        public override void update()
+        {
+            if ((DateTime.Now - Game1.StartTime).TotalSeconds > 5)
+            {
+                base.update();
+            }
         }
 
         public override void draw()
         {
-            float angele = Rotation + (float)Math.PI / 6;
-            Matrix mat = Matrix.CreateRotationZ(angele);
-            Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
-            Vector2 temp = Position;
-            while (G.map[temp].ToString() != "Obstacle" && (Position - temp).Length() <= 300)
+            if ((DateTime.Now - Game1.StartTime).TotalSeconds > 5)
             {
-                temp += step * 2;
-            }
-            G.drawVec(Rotation + (float)Math.PI + (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
+                float angele = Rotation + (float)Math.PI / 6;
+                Matrix mat = Matrix.CreateRotationZ(angele);
+                Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
+                Vector2 temp = Position;
+                while (G.map[temp].ToString() != "Obstacle" && (Position - temp).Length() <= 300)
+                {
+                    temp += step * 2;
+                }
+                G.drawVec(Rotation + (float)Math.PI + (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
 
-            angele = Rotation - (float)Math.PI / 6;
-            mat = Matrix.CreateRotationZ(angele);
-            step = Vector2.Transform(Vector2.UnitY, mat);
-            temp = Position;  
-            while (G.map[temp].ToString() != "Obstacle" && (Position - temp).Length() <= 300)
-            {
-                temp += step * 2;
+                angele = Rotation - (float)Math.PI / 6;
+                mat = Matrix.CreateRotationZ(angele);
+                step = Vector2.Transform(Vector2.UnitY, mat);
+                temp = Position;
+                while (G.map[temp].ToString() != "Obstacle" && (Position - temp).Length() <= 300)
+                {
+                    temp += step * 2;
+                }
+                G.drawVec(Rotation + (float)Math.PI - (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
             }
-            G.drawVec(Rotation + (float)Math.PI - (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
             base.draw();
         }
     }

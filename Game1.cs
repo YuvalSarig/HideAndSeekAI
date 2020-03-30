@@ -16,7 +16,7 @@ namespace HNS
         public static event DlgUpdate Event_Update;
         Camera cam;
         public static int W = 1920, H = 1080;
-
+        public static DateTime StartTime = DateTime.Now;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -56,6 +56,10 @@ namespace HNS
                        G.GetRandPos(),
                        null, Color.White, 0, new Vector2(104, 124),
                        new Vector2(0.3f), 0, 0);
+            while((seeker.Position - hider.Position).Length() < 400)
+            {
+                hider.Position = G.GetRandPos();
+            }
             IFocous[] focous = new IFocous[2];
             focous[0] = seeker;
             focous[1] = hider;
@@ -71,7 +75,7 @@ namespace HNS
 
         protected override void Update(GameTime gameTime)
         {
-            string s;
+            string s;         
             if (G.v.IsView(seeker.Position, hider.Position))
             {
                 s = "Hider View The Seeker: True,";
