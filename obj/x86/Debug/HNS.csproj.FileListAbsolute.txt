@@ -50,3 +50,4 @@ C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.csproj.CopyComplete
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.exe
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.pdb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\Arial.xnb

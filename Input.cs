@@ -11,13 +11,12 @@ using Microsoft.Xna.Framework.Input;
 namespace HNS
 {
     #region base
-    abstract class BaseKeys
+    public abstract class BaseKeys
     {
         public abstract bool Left();
         public abstract bool Right();
         public abstract bool Up();
         public abstract bool Down();
-        public abstract void WhoAmI(IFocous me);
 
 
 
@@ -36,40 +35,33 @@ namespace HNS
         }
         public override bool Left()
         {
-            return G.ks.IsKeyDown(left);
+            return StaticClass.ks.IsKeyDown(left);
         }
         public override bool Up()
         {
-            return G.ks.IsKeyDown(up);
+            return StaticClass.ks.IsKeyDown(up);
         }
         public override bool Down()
         {
-            return G.ks.IsKeyDown(down);
+            return StaticClass.ks.IsKeyDown(down);
         }
         public override bool Right()
         {
-            return G.ks.IsKeyDown(right);
-        }
-        public override void WhoAmI(IFocous me)
-        {
-
+            return StaticClass.ks.IsKeyDown(right);
         }
     }
     #endregion
-    class BotKeys : BaseKeys
+    public class BotKeys : BaseKeys
     {
         #region DATA
         bool left, right, up, down;
-        IFocous Target;
-        float wheretoaim = 0;
-        IFocous mycar;
+
+
         #endregion
         #region Ctors
-        public BotKeys(IFocous target)
+        public BotKeys()
         {
-            this.Target = target;
-            wheretoaim = (G.rnd.Next(100) - 50) / 50f;
-            Game1.Event_Update += update;
+
         }
         #endregion
         #region OVERIDE FUNCS
@@ -90,43 +82,9 @@ namespace HNS
             return right;
         }
         #endregion
-        public override void WhoAmI(IFocous mycar)
-        {
-            this.mycar = mycar;
-        }
         void update()
         {
-            up = true;
-            down = false;
-            Vector2 distance = Target.Position - mycar.Position;
-            if (distance.Length() < 400)
-            {
-                left = false;
-                right = false;
-                up = false;
-                down = true;
-                return;
-            }
-
-            double angle = Math.Atan2(distance.X, -distance.Y);
-
-            left = false;
-            right = false;
-
-            float reallywheretoaim = wheretoaim;
-            if (distance.Length() < 500)
-            {
-                reallywheretoaim = 0;
-            }
-
-            float angleDif = MathHelper.WrapAngle(mycar.Rotation -
-                MathHelper.Pi / 2 - (float)angle + reallywheretoaim);
-
-            if (Math.Abs(angleDif) > G.STEERSPEED)
-            {
-                if (angleDif >= 0) left = true;
-                else right = true;
-            }
+          
         }
     }
 }

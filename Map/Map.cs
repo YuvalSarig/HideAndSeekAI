@@ -18,13 +18,13 @@ namespace HNS
         {
             get
             {
-                float x = pos.X / G.mapScale;
-                float y = pos.Y / G.mapScale;
-                if (x > gt.GetLength(0) || x < 0)
+                float x = pos.X / StaticClass.mapScale;
+                float y = pos.Y / StaticClass.mapScale;
+                if (x >= 1280 || x <= 0)
                 {
                     return GroundTypes.Obstacle;
                 }
-                if (y > gt.GetLength(1) || y < 0)
+                if (y >= 720 || y <= 0)
                 {
                     return GroundTypes.Obstacle;
                 }

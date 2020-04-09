@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HNS
 {
-    class Hider : MovingObj
+    public class Hider : Characters
     {
         List<Vector2> cord;
         List<Vector2> cordPos;
@@ -25,7 +25,7 @@ namespace HNS
            effects, layerDepth)
         {
             CreateList();
-            Game1.Event_Update += update;
+            MainGame.UpdateEvent += update;
         }
 
         private void CreateList()
@@ -45,15 +45,34 @@ namespace HNS
         {
             for (int i = 0; i < cordPos.Count; i++)
             {
-                cordPos[i] = Position + G.rotate_vector(cord[i] - Position, Rotation, scale.X);
+                cordPos[i] = Position + StaticClass.rotate_vector(cord[i] - Position, Rotation, scale.X);
             }
         }
 
         public override void update()
         {
             //fillCordPos();
-            G.maph.SetHiderOnMap((int)Position.X, (int)Position.Y, LastPos);
+            StaticClass.maph.SetHiderOnMap((int)Position.X, (int)Position.Y, LastPos);
             LastPos = Position;
+            Matrix mat;
+            if (keys.Left())
+            {
+                Rotation -= 0.1f;
+            }
+            if (keys.Right())
+            {
+                Rotation += 0.1f;
+            }
+            if (keys.Up())
+            {
+                mat = Matrix.CreateRotationZ(Rotation);
+                Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
+                Position += step * 5;
+                if (StaticClass.map[Position].ToString() == "Obstacle" || Position.X < 0 || Position.X > 1280 * 2 || Position.Y < 0 || Position.Y > 720 * 2)
+                {
+                    Position -= step * 5;
+                }
+            }
             base.update();
         }
 

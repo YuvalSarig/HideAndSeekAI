@@ -11,10 +11,10 @@ namespace HNS
 {
     class MapHider
     {
-        int[] c;
+        int[,] c;
         public MapHider()
         {
-            c = new int[Game1.W * Game1.H * G.mapScale * G.mapScale];
+            c = new int[StaticClass.WIDTH * StaticClass.mapScale, StaticClass.HEIGHT * StaticClass.mapScale];
 
         }
 
@@ -25,9 +25,9 @@ namespace HNS
             {
                 for (int j = (int)(-104 * 0.3); j < 113 * 0.3; j++)
                 {
-                    if (0 < i + y && Game1.H * G.mapScale > i + y && 0 < j + x && Game1.W * G.mapScale > j + x)
+                    if (0 < i + y && StaticClass.HEIGHT * StaticClass.mapScale > i + y && 0 < j + x && StaticClass.WIDTH * StaticClass.mapScale > j + x)
                     {
-                        c[(i + y) * Game1.W + (j + x)] = 0;
+                        c[(j + x), (i + y)] = 0;
                     }
                 }
             }
@@ -40,9 +40,9 @@ namespace HNS
             {
                 for (int j = (int)(-104 * 0.3); j < 113 * 0.3; j++)
                 {
-                    if ( 0 < i + y && Game1.H * G.mapScale > i + y && 0 < j + x && Game1.W * G.mapScale > j + x)
+                    if ( 0 < i + y && StaticClass.HEIGHT * StaticClass.mapScale > i + y && 0 < j + x && StaticClass.WIDTH * StaticClass.mapScale > j + x)
                     {
-                        c[(i + y)* Game1.W + (j + x)] = 1;
+                        c[(j + x), (i + y)] = 1;
                     }
                 }
             }
@@ -50,7 +50,7 @@ namespace HNS
 
         public bool IsHiderFound(Vector2 v)
         {
-            if (c[Math.Abs((int)v.Y) * Game1.W + Math.Abs((int)v.X)] == 1)
+            if (c[Math.Abs((int)v.X ), Math.Abs((int)v.Y)] == 1)
                 return true;
             else
                 return false;

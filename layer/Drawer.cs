@@ -15,7 +15,7 @@ namespace HNS
         float Rotation { get; }
     }
 
-    class Drawer : IFocous
+    public class Drawer : IFocous
     {
         #region data
         public Vector2 Position { get; set; }
@@ -48,7 +48,7 @@ namespace HNS
             this.scale = scale;
             this.effects = effects;
             this.layerDepth = layerDepth;
-            Game1.Event_Draw += draw;
+            MainGame.DrawEvent += draw;
 
         }
 
@@ -57,7 +57,7 @@ namespace HNS
         #region funcs
         public virtual void draw()
         {
-            G.sb.Draw(texture, Position, sourceRectangle,
+            StaticClass.sb.Draw(texture, Position, sourceRectangle,
                       color, Rotation, origin, scale,
                       effects, layerDepth);
         }

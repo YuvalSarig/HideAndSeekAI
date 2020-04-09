@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/map2.png</SourceFile>
-  <SourceTime>2020-02-20T08:28:17.31781+02:00</SourceTime>
+  <SourceTime>2020-02-20T10:28:18+02:00</SourceTime>
   <DestFile>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/map2.xnb</DestFile>
-  <DestTime>2020-03-05T10:23:36.2336519+02:00</DestTime>
+  <DestTime>2020-04-09T18:17:50.0132095+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T18:35:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

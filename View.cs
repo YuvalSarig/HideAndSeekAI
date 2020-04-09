@@ -11,7 +11,6 @@ namespace HNS
 {
     class View 
     {
-
         public View()
         {
             
@@ -33,38 +32,40 @@ namespace HNS
             while (i < k)
             {
                 temp += v;
-                if (G.map[temp].ToString() == "Obstacle")
+                if (StaticClass.map[temp].ToString() == "Obstacle")
                     return false;
                 i++;
             }
             return true;
         }
 
-        public bool FindHider(Vector2 SeekerPos, float rot, Vector2 HiderPos)
+        public bool FindHider(Vector2 SeekerPos, float rot)
         {
-            
-            float angele = rot;
-            Matrix mat = Matrix.CreateRotationZ(angele);
-            Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
-            Vector2 temp = SeekerPos;
-
-            int see = 60;
-            for (int i = 0; i < see; i++)
+            if ((SeekerPos - MainGame.hider.Position).Length() < 500)
             {
-                while (G.map[temp].ToString() != "Obstacle" && (SeekerPos - temp).Length() <= 300)
+                float angele = rot;
+                Matrix mat = Matrix.CreateRotationZ(angele);
+                Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
+                Vector2 temp = SeekerPos;
+
+                int see = 60;
+                for (int i = 0; i < see; i++)
                 {
-                    temp += step * 2;
-
-
-                    if (G.maph.IsHiderFound(temp))
+                    while (StaticClass.map[temp].ToString() != "Obstacle" && (SeekerPos - temp).Length() <= 300)
                     {
-                        return true;
+                        temp += step * 10;
+
+
+                        if (StaticClass.maph.IsHiderFound(temp))
+                        {
+                            return true;
+                        }
                     }
+                    angele += (float)Math.PI / 180;
+                    mat = Matrix.CreateRotationZ(angele);
+                    step = Vector2.Transform(Vector2.UnitY, mat);
+                    temp = SeekerPos;
                 }
-                angele += (float)Math.PI / 180;
-                mat = Matrix.CreateRotationZ(angele);
-                step = Vector2.Transform(Vector2.UnitY, mat);
-                temp = SeekerPos;
             }
             return false;
         }
