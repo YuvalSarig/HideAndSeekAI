@@ -44,7 +44,7 @@
     <Compile Include="Map\Camera.cs" />
     <Compile Include="layer\Drawer.cs" />
     <Compile Include="NeuralNetwork\Neuron.cs" />
-    <Compile Include="NeuralNetwork\SeekerNeuroNetwork.cs" />
+    <Compile Include="NeuralNetwork\NeuralNetwork.cs" />
     <Compile Include="StaticClass.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="layer\Hider.cs" />
@@ -71,6 +71,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HNS.Program" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.MainGame" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAFAAAgAACAwAAAoAIQAACAAAAAAAABAAEAAAAAAQ=</HashCode>
+      <FileName>MainGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.StaticClass" Collapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEGQgAAQCCAAMSEAQYAAAAAAQAEAIAEBAIADDEEAQ=</HashCode>
+      <FileName>StaticClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.SeekerComper" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>layer\Seeker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HNS.MapHider" Collapsed="true">
+    <Position X="6.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEEAgAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Map\MapHider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.Map" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Map\Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.Camera" Collapsed="true">
+    <Position X="8.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAJAAAAAAAAAAAAAAEAAkAAA=</HashCode>
+      <FileName>Map\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.View" Collapsed="true">
+    <Position X="6.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.BaseKeys" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
+      <FileName>Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.UserKeys" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAACAAAAAAAAAAAAAAAIAAAACACAAgAAgAI=</HashCode>
+      <FileName>Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.BotKeys" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAACAAAAAAAAAAAAAAAIAAAACACAAgAEgAI=</HashCode>
+      <FileName>Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.NeuralNetwork.Neuron" Collapsed="true">
+    <Position X="1" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhAAAAAAAAAAAAQAAAAAAAAAAgAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>NeuralNetwork\Neuron.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.NeuralNetwork.SeekerNeuroNetwork" Collapsed="true">
+    <Position X="3" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAgAEAAAAAAAAgEgAAAAABAACIAAQgUEA=</HashCode>
+      <FileName>NeuralNetwork\SeekerNeuroNetwork.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.Characters" Collapsed="true">
+    <Position X="1.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>layer\Characters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.Drawer" Collapsed="true">
+    <Position X="1.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAIAgAAIAAAAGAAAAAgCAAAQAAAAAACA=</HashCode>
+      <FileName>layer\Drawer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HNS.Hider" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAABAAACAEAAAQAAAAAAAAAAEAAA=</HashCode>
+      <FileName>layer\Hider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HNS.Seeker" Collapsed="true">
+    <Position X="2.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAgAABAAIAAAAwAACIEAAAAAAAEAAAAAAAACAAEAAA=</HashCode>
+      <FileName>layer\Seeker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="HNS.IFocous" Collapsed="true">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>layer\Drawer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="HNS.DelgtDraw" Collapsed="true">
+    <Position X="6.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExternalSaves.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="HNS.DelgtUpdate" Collapsed="true">
+    <Position X="8.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExternalSaves.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

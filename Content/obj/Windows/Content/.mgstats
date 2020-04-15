@@ -1,6 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/Arial.spritefont","C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/Arial.xnb","FontDescriptionProcessor","SpriteFontContent",2008,70673,0.288189
+"C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/Arial.spritefont","C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/Arial.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21521,0.3918011
 "C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/hider.png","C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/hider.xnb","TextureProcessor","Texture2DContent",46474,212745,0.2543207
-"C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/map2.png","C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/map2.xnb","TextureProcessor","Texture2DContent",13750,3686485,0.1878893
-"C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/mask.png","C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/mask.xnb","TextureProcessor","Texture2DContent",12571,3686485,0.0847987
+"C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/map.png","C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/map.xnb","TextureProcessor","Texture2DContent",977419,8294485,0.3329095
+"C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/mask.png","C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/mask.xnb","TextureProcessor","Texture2DContent",11673,8294485,0.2234009
 "C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/seeker.png","C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/seeker.xnb","TextureProcessor","Texture2DContent",26529,127741,0.0308752

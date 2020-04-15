@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/Arial.spritefont</SourceFile>
-  <SourceTime>2020-04-09T19:07:41.6402956+03:00</SourceTime>
+  <SourceTime>2020-04-10T00:35:42.406091+03:00</SourceTime>
   <DestFile>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/bin/Windows/Content/Arial.xnb</DestFile>
-  <DestTime>2020-04-09T19:07:46.1624401+03:00</DestTime>
+  <DestTime>2020-04-10T00:35:45.8274433+03:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2018-12-08T18:35:54+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

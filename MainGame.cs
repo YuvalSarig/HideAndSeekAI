@@ -13,7 +13,7 @@ namespace HNS
         GraphicsDeviceManager GraphicsDeviceM;
         public static event DelgtDraw DrawEvent;
         public static event DelgtUpdate UpdateEvent;
-        private List<Seeker> SeekerPop  = new List<Seeker>();
+        private List<Seeker> SeekerPop = new List<Seeker>();
         private List<Seeker> DeadSeekers = new List<Seeker>();
         public static Hider hider;
         Drawer map;
@@ -42,7 +42,7 @@ namespace HNS
         protected override void LoadContent()
         {
             StaticClass.init(base.GraphicsDevice, Content);
-            map = new Drawer(Content.Load<Texture2D>("map2"),
+            map = new Drawer(Content.Load<Texture2D>("map"),
                        new Vector2(0, 0),
                        null, Color.White, 0, new Vector2(0),
                        new Vector2(StaticClass.mapScale), SpriteEffects.None, 0);
@@ -84,9 +84,11 @@ namespace HNS
             base.GraphicsDevice.Clear(Color.Black);
             StaticClass.sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
                 null, null, null, null, cam.Mat);
-            StaticClass.sb.DrawString(StaticClass.font, "Iteration number: " +StaticClass.populationNumber, new Vector2(400, 400), Color.Red);
 
             DrawEvent?.Invoke();
+            StaticClass.sb.DrawString(StaticClass.font, "Iteration number: " + StaticClass.populationNumber, new Vector2(0, 0), Color.Black);
+            StaticClass.sb.DrawString(StaticClass.font, "Last Fitness: " + StaticClass.scores["lastFitness"], new Vector2(0, 20), Color.Black);
+            StaticClass.sb.DrawString(StaticClass.font, "Max Fitness: " + StaticClass.scores["maxFitness"], new Vector2(0, 40), Color.Black);
             StaticClass.sb.End();
 
             base.Draw(gameTime);
@@ -95,15 +97,16 @@ namespace HNS
         // Initialize Seekers List
         private void InitSeekers()
         {
+            StaticClass.StartSeekerRot = (float)StaticClass.rnd.NextDouble() * MathHelper.TwoPi;
             for (int i = 0; i < StaticClass.SeekerNum; i++)
             {
-                NeuralNetwork.SeekerNeuroNetwork Neuralnetwork = new NeuralNetwork.SeekerNeuroNetwork(
+                NeuralNetwork.NeuralNetwork Neuralnetwork = new NeuralNetwork.NeuralNetwork(
                     StaticClass.SeekerInputs,
                     StaticClass.hiddenLayersConfig[StaticClass.rnd.Next(StaticClass.hiddenLayersConfig.Count)],
-                    StaticClass.SeekerOutputs, StaticClass.SeekerMemory);
+                    StaticClass.SeekerOutputs);
                 SeekerPop.Add(new Seeker(Neuralnetwork, new BotKeys(),
                     Content.Load<Texture2D>("seeker"), StaticClass.StartSeekerPos,
-                       null, Color.White, 0/*(float)StaticClass.rnd.NextDouble() * MathHelper.TwoPi*/, new Vector2(96, 106),
+                       null, Color.White, StaticClass.StartSeekerRot, new Vector2(96, 106),
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }
         }
@@ -129,8 +132,11 @@ namespace HNS
                 SynchronousUpdateDone = true;
             }
         }
+
+        // Create seeker population by the best seekers
         private void CreateSeekerPopulation()
         {
+            // sort dead seekers by the best fitness they achive
             DeadSeekers.Sort(new SeekerComper());
             DeadSeekers.Reverse();
             if (StaticClass.topSeeker == null || DeadSeekers[0].Fitness > StaticClass.topSeeker.Fitness)
@@ -142,41 +148,44 @@ namespace HNS
             StaticClass.scores["maxFitness"] = Math.Max(StaticClass.scores["maxFitness"], DeadSeekers[0].Fitness);
             StaticClass.scores["lastFitness"] = DeadSeekers[0].Fitness;
             if (DeadSeekers[0].Fitness == 0) throw new Exception();
-
-            for (int i = 0; i < StaticClass.SeekerNum * 0.3; i++)
+            // create black seekers that Their Neural Network Similar the best seeker
+            for (int i = 0; i < StaticClass.SeekerNum * 0.35; i++)
             {
-                NeuralNetwork.SeekerNeuroNetwork Neuralnetwork = StaticClass.topSeeker.Neuralnetwork.Copy();
+                NeuralNetwork.NeuralNetwork Neuralnetwork = StaticClass.topSeeker.Neuralnetwork.Copy();
                 Neuralnetwork.Cross(DeadSeekers[0].Neuralnetwork);
                 Neuralnetwork.ChangeNeuronWeights(StaticClass.shakeRate);
                 SeekerPop.Add(new Seeker(Neuralnetwork, new BotKeys(),
                     Content.Load<Texture2D>("seeker"), StaticClass.StartSeekerPos,
-                       null, Color.Black, 0/*(float)StaticClass.rnd.NextDouble() * MathHelper.TwoPi*/, new Vector2(96, 106),
+                       null, Color.Black, StaticClass.StartSeekerRot, new Vector2(96, 106),
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }
-            for (int i = 0; i < StaticClass.SeekerNum * 0.3; i++)
+            // create blue seekers that Their Neural Network With a little change of the best seeker
+            for (int i = 0; i < StaticClass.SeekerNum * 0.35; i++)
             {
-                NeuralNetwork.SeekerNeuroNetwork Neuralnetwork = StaticClass.topSeeker.Neuralnetwork.Copy();
+                NeuralNetwork.NeuralNetwork Neuralnetwork = StaticClass.topSeeker.Neuralnetwork.Copy();
                 Neuralnetwork.ChangeNeuronWeights(StaticClass.shakeRate);
                 SeekerPop.Add(new Seeker(Neuralnetwork, new BotKeys(),
                     Content.Load<Texture2D>("seeker"), StaticClass.StartSeekerPos,
-                       null, Color.Blue, 0/*(float)StaticClass.rnd.NextDouble() * MathHelper.TwoPi*/, new Vector2(96, 106),
+                       null, Color.Blue, StaticClass.StartSeekerRot, new Vector2(96, 106),
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }
+            // create red seekers that Their Neural Network With a little change of the second best seeker
             for (int i = 0; i < StaticClass.SeekerNum * 0.2; i++)
             {
-                NeuralNetwork.SeekerNeuroNetwork Neuralnetwork = StaticClass.topSeeker2.Neuralnetwork.Copy();
+                NeuralNetwork.NeuralNetwork Neuralnetwork = StaticClass.topSeeker2.Neuralnetwork.Copy();
                 Neuralnetwork.ChangeNeuronWeights(StaticClass.shakeRate);
                 SeekerPop.Add(new Seeker(Neuralnetwork, new BotKeys(),
                     Content.Load<Texture2D>("seeker"), StaticClass.StartSeekerPos,
-                       null, Color.Red, 0/*(float)StaticClass.rnd.NextDouble() * MathHelper.TwoPi*/, new Vector2(96, 106),
+                       null, Color.Red, StaticClass.StartSeekerRot, new Vector2(96, 106),
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }
-            for (int i = 0; i < StaticClass.SeekerNum * 0.2; i++)
+            // create regular seekers that Their Neural Network is Random
+            for (int i = 0; i < StaticClass.SeekerNum * 0.1; i++)
             {
-                NeuralNetwork.SeekerNeuroNetwork Neuralnetwork = new NeuralNetwork.SeekerNeuroNetwork(StaticClass.SeekerInputs, StaticClass.hiddenLayersConfig[StaticClass.rnd.Next(StaticClass.hiddenLayersConfig.Count)], StaticClass.SeekerOutputs, StaticClass.SeekerMemory);
+                NeuralNetwork.NeuralNetwork Neuralnetwork = new NeuralNetwork.NeuralNetwork(StaticClass.SeekerInputs, StaticClass.hiddenLayersConfig[StaticClass.rnd.Next(StaticClass.hiddenLayersConfig.Count)], StaticClass.SeekerOutputs);
                 SeekerPop.Add(new Seeker(Neuralnetwork, new BotKeys(),
                     Content.Load<Texture2D>("seeker"), StaticClass.StartSeekerPos,
-                       null, Color.White, 0/*(float)StaticClass.rnd.NextDouble() * MathHelper.TwoPi*/, new Vector2(96, 106),
+                       null, Color.White, StaticClass.StartSeekerRot, new Vector2(96, 106),
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }
             DeadSeekers.Clear();

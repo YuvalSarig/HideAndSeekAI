@@ -9,8 +9,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HNS
 {
-    enum GroundTypes { Obstacle, Way };
-
     class Map
     {
         GroundTypes[,] gt;
@@ -20,11 +18,11 @@ namespace HNS
             {
                 float x = pos.X / StaticClass.mapScale;
                 float y = pos.Y / StaticClass.mapScale;
-                if (x >= 1280 || x <= 0)
+                if (x >= StaticClass.WIDTH || x <= 0)
                 {
                     return GroundTypes.Obstacle;
                 }
-                if (y >= 720 || y <= 0)
+                if (y >= StaticClass.HEIGHT || y <= 0)
                 {
                     return GroundTypes.Obstacle;
                 }

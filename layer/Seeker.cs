@@ -25,10 +25,10 @@ namespace HNS
                 if (energy <= 0) Dead = true;
             }
         }
-        public NeuralNetwork.SeekerNeuroNetwork Neuralnetwork { get; }
-        public int Fitness => Score * Score * LifeTime + LifeTime;
-        //float LeftVec, RightVec;
-        public Seeker(NeuralNetwork.SeekerNeuroNetwork Neuralnetwork, BaseKeys keys, Texture2D texture, Vector2 position,
+        public NeuralNetwork.NeuralNetwork Neuralnetwork { get; }
+        public int Fitness => Score * Score  + LifeTime;
+        float LeftVec, RightVec;
+        public Seeker(NeuralNetwork.NeuralNetwork Neuralnetwork, BaseKeys keys, Texture2D texture, Vector2 position,
           Rectangle? sourceRectangle, Color color,
           float rotation, Vector2 origin, Vector2 scale,
           SpriteEffects effects, float layerDepth) :
@@ -37,7 +37,8 @@ namespace HNS
            rotation, origin, scale,
            effects, layerDepth)
         {
-            Score = 50;
+            LifeTime = 0;
+            Score = 1000;
             this.Neuralnetwork = Neuralnetwork;
             Neuralnetwork.Seeker = this;
             Energy = 1000;
@@ -47,15 +48,15 @@ namespace HNS
         public override void update()
         {
             if (Dead) return;
-            Neuralnetwork.SetAllLayerBais(GetInputs());
+            Neuralnetwork.SetAllLayerBias(GetInputs());
             double rotRight = Neuralnetwork.OutputsLayer[0].NBias;
             double rotLeft = Neuralnetwork.OutputsLayer[1].NBias;
 
-            if (rotRight > 0.4)
+            if (rotRight > 0.5)
             {
                 Rotation += 0.1f;
             }
-            if (rotLeft > 0.4)
+            if (rotLeft > 0.5)
             {
                 Rotation -= 0.1f;
             }
@@ -76,6 +77,7 @@ namespace HNS
                 temp += step * 2;
             }
             StaticClass.drawVec(Rotation + (float)Math.PI + (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
+            RightVec = (Position - temp).Length();
             angele = Rotation - (float)Math.PI / 6;
             mat = Matrix.CreateRotationZ(angele);
             step = Vector2.Transform(Vector2.UnitY, mat);
@@ -84,7 +86,8 @@ namespace HNS
             {
                 temp += step * 2;
             }
-            StaticClass.drawVec(Rotation + (float)Math.PI - (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3); 
+            StaticClass.drawVec(Rotation + (float)Math.PI - (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
+            LeftVec = (Position - temp).Length();
             base.draw();
         }
         private void Move()
@@ -96,15 +99,15 @@ namespace HNS
             Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
 
             Position += step * 4;
-            if (StaticClass.map[Position].ToString() == "Obstacle" || Position.X < 0 || Position.X > 1280 * 2 || Position.Y < 0 || Position.Y > 720 * 2)
+            if (StaticClass.map[Position].ToString() == "Obstacle" || Position.X < 0 || Position.X > StaticClass.WIDTH || Position.Y < 0 || Position.Y > StaticClass.HEIGHT)
             {
-                Score -= 5;
+                Score = 0;
                 Dead = true;
                 return;
             }
             else if (!StaticClass.v.FindHider(Position, Rotation - (float)Math.PI / 6))
             {
-                Score--;
+                Score = Math.Max(--Score, 0);
             }
             else if (StaticClass.v.FindHider(Position, Rotation - (float)Math.PI / 6))
             {
@@ -118,29 +121,29 @@ namespace HNS
         private List<double> GetInputs()
         {
             List<double> inputs = new List<double>();
-            float angele;
+            float angle;
+            angle = (float)Math.Atan2(MainGame.hider.Position.Y - Position.Y, MainGame.hider.Position.X - Position.X) - (float)Math.PI / 2;
+            inputs.Add(angle);
             Matrix mat;
             Vector2 step;
-            angele = Rotation;
-            mat = Matrix.CreateRotationZ(angele);
+            angle = Rotation;
+            mat = Matrix.CreateRotationZ(angle);
             step = Vector2.Transform(Vector2.UnitY, mat);
             Vector2 temp = Position;
             float add = MathHelper.TwoPi / 12;
 
             for (int i = 0; i < 12; i++)
             {
-                while (StaticClass.map[temp].ToString() != "Obstacle" && temp.X > 0 && temp.X < 1280 * 2 && temp.Y > 0 && temp.Y < 720 * 2)
+                while (StaticClass.map[temp].ToString() != "Obstacle" && temp.X > 0 && temp.X < StaticClass.WIDTH && temp.Y > 0 && temp.Y < StaticClass.HEIGHT)
                 {
                     temp += step * 10;
                 }
                 inputs.Add((Position - temp).Length() / 100);
-                angele += add;
-                mat = Matrix.CreateRotationZ(angele);
+                angle += add;
+                mat = Matrix.CreateRotationZ(angle);
                 step = Vector2.Transform(Vector2.UnitY, mat);
                 temp = Position;
             }
-            angele = (float)Math.Atan2(MainGame.hider.Position.Y - Position.Y, MainGame.hider.Position.X - Position.X) + (float)Math.PI / 2;
-            inputs.Add(angele);
             return inputs;
         }
     }

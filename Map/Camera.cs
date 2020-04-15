@@ -51,9 +51,7 @@ namespace HNS
             //    Matrix.CreateScale(zoom) *
             //    Matrix.CreateTranslation(vp.Width / 2, vp.Height / 2, 0);
 
-            Mat = Matrix.CreateTranslation(-StaticClass.WIDTH * 1.5f, -StaticClass.HEIGHT * 1.5f, 0) *
-                                Matrix.CreateScale(0.5f) *
-                Matrix.CreateTranslation(StaticClass.WIDTH, StaticClass.HEIGHT, 0);
+            Mat = Matrix.CreateTranslation(-0, -0, 0);
         }
     }
 }

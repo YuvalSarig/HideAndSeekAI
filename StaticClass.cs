@@ -27,17 +27,17 @@ namespace HNS
         public static DateTime START_TIME;
         public static SpriteFont font;
         public static Vector2 StartSeekerPos;
+        public static float StartSeekerRot;
         public static int populationNumber = 1;
-        public static int SeekerNum = 20;
-        public static int SeekerInputs = 25;
-        public static int SeekerOutputs = 3;
-        public static int SeekerMemory = 4;
+        public static int SeekerNum = 50;
+        public static int SeekerInputs = 13;
+        public static int SeekerOutputs = 2;
         public static double shakeRate = 0.1;
         public static Seeker topSeeker;
         public static Seeker topSeeker2;
         public static List<List<int>> hiddenLayersConfig = new List<List<int>>
         {
-            new List<int> { 3 }
+            new List<int> { 14 }
         };
         public static Dictionary<string, int> scores = new Dictionary<string, int>();
 
@@ -46,7 +46,7 @@ namespace HNS
             font = Content.Load<SpriteFont>("Arial");
             START_TIME = DateTime.Now;
             map = new Map(Content.Load<Texture2D>("mask"));
-            mapScale = 2;
+            mapScale = 1;
             rnd = new Random();
             sb = new SpriteBatch(gd);
             pixel = new Texture2D(gd, 1, 1);

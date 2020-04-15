@@ -50,7 +50,7 @@ namespace HNS
 
         public bool IsHiderFound(Vector2 v)
         {
-            if (c[Math.Abs((int)v.X ), Math.Abs((int)v.Y)] == 1)
+            if (c[MathHelper.Clamp(Math.Abs((int)v.X ), 1, StaticClass.WIDTH - 1), MathHelper.Clamp(Math.Abs((int)v.Y), 1, StaticClass.HEIGHT - 1)] == 1)
                 return true;
             else
                 return false;

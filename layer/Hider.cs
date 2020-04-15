@@ -68,7 +68,7 @@ namespace HNS
                 mat = Matrix.CreateRotationZ(Rotation);
                 Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
                 Position += step * 5;
-                if (StaticClass.map[Position].ToString() == "Obstacle" || Position.X < 0 || Position.X > 1280 * 2 || Position.Y < 0 || Position.Y > 720 * 2)
+                if (StaticClass.map[Position].ToString() == "Obstacle" || Position.X < 0 || Position.X > StaticClass.WIDTH || Position.Y < 0 || Position.Y > StaticClass.HEIGHT)
                 {
                     Position -= step * 5;
                 }

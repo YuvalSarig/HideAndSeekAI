@@ -40,7 +40,7 @@ namespace HNS.NeuralNetwork
         {
             for (int i = 0; i < WeightsNums; i++)
             {
-                NWeights[i] = SeekerNeuroNetwork.GetRandomWeight();
+                NWeights[i] = NeuralNetwork.GetRandomWeight();
             }
         }
 
