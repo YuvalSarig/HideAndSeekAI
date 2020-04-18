@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Map\Camera.cs" />
-    <Compile Include="layer\Drawer.cs" />
+    <Compile Include="layer\Characters.cs" />
     <Compile Include="NeuralNetwork\Neuron.cs" />
     <Compile Include="NeuralNetwork\NeuralNetwork.cs" />
     <Compile Include="StaticClass.cs" />
@@ -51,7 +51,6 @@
     <Compile Include="Input.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Map\MapHider.cs" />
-    <Compile Include="layer\Characters.cs" />
     <Compile Include="ExternalSaves.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

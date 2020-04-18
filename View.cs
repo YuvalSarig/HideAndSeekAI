@@ -41,7 +41,7 @@ namespace HNS
 
         public bool FindHider(Vector2 SeekerPos, float rot)
         {
-            if ((SeekerPos - MainGame.hider.Position).Length() < 500)
+            if ((SeekerPos - MainGame.hider.Position).Length() < 400)
             {
                 float angele = rot;
                 Matrix mat = Matrix.CreateRotationZ(angele);

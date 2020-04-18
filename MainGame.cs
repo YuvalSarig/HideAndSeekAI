@@ -18,7 +18,6 @@ namespace HNS
         public static Hider hider;
         Drawer map;
         Camera cam;
-        private bool SynchronousUpdateDone = false;
 
         public MainGame()
         {
@@ -73,7 +72,7 @@ namespace HNS
 
         protected override void Update(GameTime gameTime)
         {
-            Update();
+            MoveDeadSeekers();
             UpdateEvent?.Invoke();
             base.Update(gameTime);
         }
@@ -86,9 +85,11 @@ namespace HNS
                 null, null, null, null, cam.Mat);
 
             DrawEvent?.Invoke();
-            StaticClass.sb.DrawString(StaticClass.font, "Iteration number: " + StaticClass.populationNumber, new Vector2(0, 0), Color.Black);
-            StaticClass.sb.DrawString(StaticClass.font, "Last Fitness: " + StaticClass.scores["lastFitness"], new Vector2(0, 20), Color.Black);
-            StaticClass.sb.DrawString(StaticClass.font, "Max Fitness: " + StaticClass.scores["maxFitness"], new Vector2(0, 40), Color.Black);
+            StaticClass.sb.DrawString(StaticClass.font, "Iteration number: " + StaticClass.PopulationNumber, new Vector2(0, 0), Color.Black);
+            StaticClass.sb.DrawString(StaticClass.font, "Last Fitness: " + StaticClass.Stats["LastFitness"], new Vector2(0, 20), Color.Black);
+            StaticClass.sb.DrawString(StaticClass.font, "Max Fitness: " + StaticClass.Stats["MaxFitness"], new Vector2(0, 40), Color.Black);
+            StaticClass.sb.DrawString(StaticClass.font, "Num of founds: " + StaticClass.Stats["NumOfFounds"], new Vector2(0, 60), Color.Black);
+
             StaticClass.sb.End();
 
             base.Draw(gameTime);
@@ -110,26 +111,26 @@ namespace HNS
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }
         }
-        private void Update()
+
+        // Check if seeker was dead and then moving to the deead seekers list
+        // if all seekers is dead create population
+        private void MoveDeadSeekers()
         {
-            SynchronousUpdateDone = false;
             for (int i = SeekerPop.Count - 1; i >= 0; i--)
             {
                 if (SeekerPop[i].Dead)
                 {
+                    if (SeekerPop[i].Found)
+                        StaticClass.NumOfFounds++;
                     DeadSeekers.Add(SeekerPop[i]);
                     DrawEvent -= SeekerPop[i].draw;
                     SeekerPop.RemoveAt(i);
                 }
-                else
-                {
-                    SeekerPop[i].update();
-                }
+                
             }
             if (SeekerPop.Count == 0)
             {
                 CreateSeekerPopulation();
-                SynchronousUpdateDone = true;
             }
         }
 
@@ -139,19 +140,24 @@ namespace HNS
             // sort dead seekers by the best fitness they achive
             DeadSeekers.Sort(new SeekerComper());
             DeadSeekers.Reverse();
-            if (StaticClass.topSeeker == null || DeadSeekers[0].Fitness > StaticClass.topSeeker.Fitness)
+            // set the best seeker by the most fitness points 
+            if (StaticClass.topSeeker == null || DeadSeekers[0].Fitness >
+                StaticClass.topSeeker.Fitness)
             {
                 StaticClass.topSeeker2 = StaticClass.topSeeker;
                 StaticClass.topSeeker = DeadSeekers[0];
             }
+            // Change the dictionary
             if (StaticClass.topSeeker2 == null) StaticClass.topSeeker2 = DeadSeekers[1];
-            StaticClass.scores["maxFitness"] = Math.Max(StaticClass.scores["maxFitness"], DeadSeekers[0].Fitness);
-            StaticClass.scores["lastFitness"] = DeadSeekers[0].Fitness;
+            StaticClass.Stats["MaxFitness"] = Math.Max(StaticClass.Stats["MaxFitness"],
+                DeadSeekers[0].Fitness);
+            StaticClass.Stats["LastFitness"] = DeadSeekers[0].Fitness;
             if (DeadSeekers[0].Fitness == 0) throw new Exception();
             // create black seekers that Their Neural Network Similar the best seeker
             for (int i = 0; i < StaticClass.SeekerNum * 0.35; i++)
             {
-                NeuralNetwork.NeuralNetwork Neuralnetwork = StaticClass.topSeeker.Neuralnetwork.Copy();
+                NeuralNetwork.NeuralNetwork Neuralnetwork = 
+                    StaticClass.topSeeker.Neuralnetwork.Copy();
                 Neuralnetwork.Cross(DeadSeekers[0].Neuralnetwork);
                 Neuralnetwork.ChangeNeuronWeights(StaticClass.shakeRate);
                 SeekerPop.Add(new Seeker(Neuralnetwork, new BotKeys(),
@@ -162,7 +168,8 @@ namespace HNS
             // create blue seekers that Their Neural Network With a little change of the best seeker
             for (int i = 0; i < StaticClass.SeekerNum * 0.35; i++)
             {
-                NeuralNetwork.NeuralNetwork Neuralnetwork = StaticClass.topSeeker.Neuralnetwork.Copy();
+                NeuralNetwork.NeuralNetwork Neuralnetwork = 
+                    StaticClass.topSeeker.Neuralnetwork.Copy();
                 Neuralnetwork.ChangeNeuronWeights(StaticClass.shakeRate);
                 SeekerPop.Add(new Seeker(Neuralnetwork, new BotKeys(),
                     Content.Load<Texture2D>("seeker"), StaticClass.StartSeekerPos,
@@ -172,7 +179,8 @@ namespace HNS
             // create red seekers that Their Neural Network With a little change of the second best seeker
             for (int i = 0; i < StaticClass.SeekerNum * 0.2; i++)
             {
-                NeuralNetwork.NeuralNetwork Neuralnetwork = StaticClass.topSeeker2.Neuralnetwork.Copy();
+                NeuralNetwork.NeuralNetwork Neuralnetwork = 
+                    StaticClass.topSeeker2.Neuralnetwork.Copy();
                 Neuralnetwork.ChangeNeuronWeights(StaticClass.shakeRate);
                 SeekerPop.Add(new Seeker(Neuralnetwork, new BotKeys(),
                     Content.Load<Texture2D>("seeker"), StaticClass.StartSeekerPos,
@@ -182,14 +190,19 @@ namespace HNS
             // create regular seekers that Their Neural Network is Random
             for (int i = 0; i < StaticClass.SeekerNum * 0.1; i++)
             {
-                NeuralNetwork.NeuralNetwork Neuralnetwork = new NeuralNetwork.NeuralNetwork(StaticClass.SeekerInputs, StaticClass.hiddenLayersConfig[StaticClass.rnd.Next(StaticClass.hiddenLayersConfig.Count)], StaticClass.SeekerOutputs);
+                NeuralNetwork.NeuralNetwork Neuralnetwork = new NeuralNetwork.NeuralNetwork(
+                    StaticClass.SeekerInputs, StaticClass.hiddenLayersConfig[
+                        StaticClass.rnd.Next(StaticClass.hiddenLayersConfig.Count)],
+                    StaticClass.SeekerOutputs);
                 SeekerPop.Add(new Seeker(Neuralnetwork, new BotKeys(),
                     Content.Load<Texture2D>("seeker"), StaticClass.StartSeekerPos,
                        null, Color.White, StaticClass.StartSeekerRot, new Vector2(96, 106),
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }
             DeadSeekers.Clear();
-            StaticClass.populationNumber++;
+            StaticClass.PopulationNumber++;
+            StaticClass.Stats["NumOfFounds"] = StaticClass.NumOfFounds;
+            StaticClass.NumOfFounds = 0;
         }
     }
 }

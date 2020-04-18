@@ -9,11 +9,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HNS
 {
-    internal class Seeker : Characters
+    internal class Seeker : Drawer
     {
-        public int Score { get; set; }
-        public int Found { get; set; }
+        public float Score { get; set; }
         public int LifeTime { get; set; }
+        public bool Found { get; set; }
         public bool Dead { get; set; }
         private int energy;
         public int Energy
@@ -26,37 +26,41 @@ namespace HNS
             }
         }
         public NeuralNetwork.NeuralNetwork Neuralnetwork { get; }
-        public int Fitness => Score * Score  + LifeTime;
-        float LeftVec, RightVec;
+        // Fitness function
+        public float Fitness => Score * Score;
+        protected BaseKeys keys;
+        //float LeftVec, RightVec;
+
         public Seeker(NeuralNetwork.NeuralNetwork Neuralnetwork, BaseKeys keys, Texture2D texture, Vector2 position,
           Rectangle? sourceRectangle, Color color,
           float rotation, Vector2 origin, Vector2 scale,
           SpriteEffects effects, float layerDepth) :
-           base(keys, texture, position,
+           base(texture, position,
            sourceRectangle, color,
            rotation, origin, scale,
            effects, layerDepth)
         {
-            LifeTime = 0;
-            Score = 1000;
+            this.keys = keys;
+            LifeTime = 1;
+            Score = 0;
             this.Neuralnetwork = Neuralnetwork;
             Neuralnetwork.Seeker = this;
-            Energy = 1000;
-            MainGame.UpdateEvent += update;
+            Energy = 501;
+            //MainGame.UpdateEvent += update;
 
         }
         public override void update()
         {
             if (Dead) return;
             Neuralnetwork.SetAllLayerBias(GetInputs());
-            double rotRight = Neuralnetwork.OutputsLayer[0].NBias;
-            double rotLeft = Neuralnetwork.OutputsLayer[1].NBias;
+            double RotateRight = Neuralnetwork.OutputsLayer[0].NBias;
+            double RotateLeft = Neuralnetwork.OutputsLayer[1].NBias;
 
-            if (rotRight > 0.5)
+            if (RotateRight > 0.5)
             {
                 Rotation += 0.1f;
             }
-            if (rotLeft > 0.5)
+            if (RotateLeft > 0.5)
             {
                 Rotation -= 0.1f;
             }
@@ -77,7 +81,7 @@ namespace HNS
                 temp += step * 2;
             }
             StaticClass.drawVec(Rotation + (float)Math.PI + (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
-            RightVec = (Position - temp).Length();
+            //RightVec = (Position - temp).Length();
             angele = Rotation - (float)Math.PI / 6;
             mat = Matrix.CreateRotationZ(angele);
             step = Vector2.Transform(Vector2.UnitY, mat);
@@ -87,58 +91,70 @@ namespace HNS
                 temp += step * 2;
             }
             StaticClass.drawVec(Rotation + (float)Math.PI - (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
-            LeftVec = (Position - temp).Length();
+            //LeftVec = (Position - temp).Length();
             base.draw();
         }
+
+        // Move the Seeker forward and give score
         private void Move()
         {
             if (Dead)
                 return;
 
+            // Set the rotation to move 
             Matrix mat = Matrix.CreateRotationZ(Rotation);
             Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
 
-            Position += step * 4;
-            if (StaticClass.map[Position].ToString() == "Obstacle" || Position.X < 0 || Position.X > StaticClass.WIDTH || Position.Y < 0 || Position.Y > StaticClass.HEIGHT)
+            // Move forward
+            Position += step * 10;
+            // Stuck in obstacle or went out of the map
+            if (StaticClass.map[Position].ToString() == "Obstacle" ||
+                    Position.X < 0 || Position.X > StaticClass.WIDTH ||
+                    Position.Y < 0 || Position.Y > StaticClass.HEIGHT)
             {
-                Score = 0;
                 Dead = true;
                 return;
             }
-            else if (!StaticClass.v.FindHider(Position, Rotation - (float)Math.PI / 6))
-            {
-                Score = Math.Max(--Score, 0);
-            }
+            // Seeker found the hider
             else if (StaticClass.v.FindHider(Position, Rotation - (float)Math.PI / 6))
             {
+                Found = true;
                 Dead = true;
-                Score += 100;
+                Score += 50;
                 return;
+            }
+            // Seeker was not found
+            else
+            {
+                Score += 3 / (MainGame.hider.Position - Position).Length();
             }
             LifeTime++;
             Energy--;
         }
+
         private List<double> GetInputs()
         {
             List<double> inputs = new List<double>();
             float angle;
             angle = (float)Math.Atan2(MainGame.hider.Position.Y - Position.Y, MainGame.hider.Position.X - Position.X) - (float)Math.PI / 2;
             inputs.Add(angle);
+
             Matrix mat;
             Vector2 step;
             angle = Rotation;
             mat = Matrix.CreateRotationZ(angle);
             step = Vector2.Transform(Vector2.UnitY, mat);
             Vector2 temp = Position;
-            float add = MathHelper.TwoPi / 12;
+            float add = (float)Math.PI / 6;
+            angle -= add;
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 3; i++)
             {
                 while (StaticClass.map[temp].ToString() != "Obstacle" && temp.X > 0 && temp.X < StaticClass.WIDTH && temp.Y > 0 && temp.Y < StaticClass.HEIGHT)
                 {
                     temp += step * 10;
                 }
-                inputs.Add((Position - temp).Length() / 100);
+                inputs.Add((Position - temp).Length() / 300);
                 angle += add;
                 mat = Matrix.CreateRotationZ(angle);
                 step = Vector2.Transform(Vector2.UnitY, mat);
@@ -151,9 +167,9 @@ namespace HNS
     {
         public int Compare(Seeker Seeker1, Seeker Seeker2)
         {
-            int Seeker1Score = Seeker1.Fitness;
+            float Seeker1Score = Seeker1.Fitness;
             if (Seeker1.Energy == 0) Seeker1Score -= 100;
-            int Seeker2Score = Seeker2.Fitness;
+            float Seeker2Score = Seeker2.Fitness;
             if (Seeker2.Energy == 0) Seeker2Score -= 100;
             return Seeker1Score.CompareTo(Seeker2Score);
         }

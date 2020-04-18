@@ -10,20 +10,22 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HNS
 {
-    public class Hider : Characters
+    public class Hider : Drawer
     {
         List<Vector2> cord;
         List<Vector2> cordPos;
         Vector2 LastPos;
+        protected BaseKeys keys;
         public Hider(BaseKeys keys, Texture2D texture, Vector2 position,
           Rectangle? sourceRectangle, Color color,
           float rotation, Vector2 origin, Vector2 scale,
           SpriteEffects effects, float layerDepth) :
-           base(keys, texture, position,
+           base( texture, position,
            sourceRectangle, color,
            rotation, origin, scale,
            effects, layerDepth)
         {
+            this.keys = keys;
             CreateList();
             MainGame.UpdateEvent += update;
         }
@@ -67,10 +69,10 @@ namespace HNS
             {
                 mat = Matrix.CreateRotationZ(Rotation);
                 Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
-                Position += step * 5;
+                Position += step * 10;
                 if (StaticClass.map[Position].ToString() == "Obstacle" || Position.X < 0 || Position.X > StaticClass.WIDTH || Position.Y < 0 || Position.Y > StaticClass.HEIGHT)
                 {
-                    Position -= step * 5;
+                    Position -= step * 10;
                 }
             }
             base.update();

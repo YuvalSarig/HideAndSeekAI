@@ -28,18 +28,19 @@ namespace HNS
         public static SpriteFont font;
         public static Vector2 StartSeekerPos;
         public static float StartSeekerRot;
-        public static int populationNumber = 1;
+        public static int NumOfFounds = 0;
+        public static int PopulationNumber = 1;
         public static int SeekerNum = 50;
-        public static int SeekerInputs = 13;
+        public static int SeekerInputs = 4;
         public static int SeekerOutputs = 2;
-        public static double shakeRate = 0.1;
+        public static double shakeRate = 0.4;
         public static Seeker topSeeker;
         public static Seeker topSeeker2;
         public static List<List<int>> hiddenLayersConfig = new List<List<int>>
         {
-            new List<int> { 14 }
+            new List<int> { 5 }
         };
-        public static Dictionary<string, int> scores = new Dictionary<string, int>();
+        public static Dictionary<string, float> Stats = new Dictionary<string, float>();
 
         public static void init(GraphicsDevice gd, ContentManager Content)
         {
@@ -53,8 +54,9 @@ namespace HNS
             pixel.SetData<Color>(new Color[1] { Color.White });
             v = new View();
             maph = new MapHider();
-            scores["maxFitness"] = 0;
-            scores["lastFitness"] = 0;
+            Stats["MaxFitness"] = 0;
+            Stats["LastFitness"] = 0;
+            Stats["NumOfFounds"] = 0;
             StartSeekerPos = StaticClass.GetRandPos();
             MainGame.UpdateEvent += update;
         }

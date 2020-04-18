@@ -55,6 +55,9 @@ namespace HNS
 
         #endregion
         #region funcs
+        public virtual void update()
+        {
+        }
         public virtual void draw()
         {
             StaticClass.sb.Draw(texture, Position, sourceRectangle,

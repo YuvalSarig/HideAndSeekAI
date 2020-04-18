@@ -17,7 +17,7 @@
   <Class Name="HNS.StaticClass" Collapsed="true">
     <Position X="8" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIEGQgAAQCCAAMSEAQYAAAAAAQAEAIAEBAIADDEEAQ=</HashCode>
+      <HashCode>ABIEGQgCAQACAAMSEAQAAAIAAAQAEAIAEBAIADDEEAQ=</HashCode>
       <FileName>StaticClass.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -85,39 +85,32 @@
       <FileName>NeuralNetwork\Neuron.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HNS.NeuralNetwork.SeekerNeuroNetwork" Collapsed="true">
+  <Class Name="HNS.NeuralNetwork.NeuralNetwork" Collapsed="true">
     <Position X="3" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAAAgAEAAAAAAAAgEgAAAAABAACIAAQgUEA=</HashCode>
-      <FileName>NeuralNetwork\SeekerNeuroNetwork.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HNS.Characters" Collapsed="true">
-    <Position X="1.5" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
-      <FileName>layer\Characters.cs</FileName>
+      <HashCode>AABAAAAAAAAAgAEAAAAAAAAgEgAAAAABAACAAAQAWEA=</HashCode>
+      <FileName>NeuralNetwork\NeuralNetwork.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HNS.Drawer" Collapsed="true">
     <Position X="1.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAAAAAIAgAAIAAAAGAAAAAgCAAAQAAAAAACA=</HashCode>
-      <FileName>layer\Drawer.cs</FileName>
+      <HashCode>CAAAAAAAAAAAAIAgAAIAAAAGAAAAAgCAAAQAAAAEACA=</HashCode>
+      <FileName>layer\Characters.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="HNS.Hider" Collapsed="true">
-    <Position X="0.5" Y="4" Width="1.5" />
+    <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAABAAACAEAAAQAAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAIAAAAAABAAACAEAAAQAAAAAAAAAAEAAA=</HashCode>
       <FileName>layer\Hider.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HNS.Seeker" Collapsed="true">
-    <Position X="2.5" Y="4" Width="1.5" />
+    <Position X="2.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAgAABAAIAAAAwAACIEAAAAAAAEAAAAAAAACAAEAAA=</HashCode>
+      <HashCode>AQAgAABAAIAIAAwAACIEAAAAAAAEAAAAAAAACAAEAAA=</HashCode>
       <FileName>layer\Seeker.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -125,7 +118,7 @@
     <Position X="1.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>layer\Drawer.cs</FileName>
+      <FileName>layer\Characters.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Delegate Name="HNS.DelgtDraw" Collapsed="true">
