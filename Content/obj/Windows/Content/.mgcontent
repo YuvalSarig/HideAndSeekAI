@@ -4,13 +4,21 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/1.bmp</File>
+    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/257251.jpg</File>
     <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/Arial.spritefont</File>
-    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/hider.png</File>
-    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/map.png</File>
-    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/mask.png</File>
+    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/Hider/WalkingDown.png</File>
+    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/Hider/WalkingLeft.png</File>
+    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/Hider/WalkingRight.png</File>
+    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/Hider/WalkingUp.png</File>
     <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/seeker.png</File>
+    <File>C:/yuval/כיתה_יג/עבודות גמר ופרוייקטים/HNS/HNS/Content/Seeker/WalkinDown.png</File>
   </SourceFiles>
   <DestFiles>
+    <File>mask1.bmp</File>
+    <File>map1.jpg</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

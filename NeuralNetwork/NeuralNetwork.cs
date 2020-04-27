@@ -8,27 +8,11 @@ namespace HNS.NeuralNetwork
 {
     internal class NeuralNetwork
     {
-        // Static
-        public static int ID = 0;
-
         //Layers
         public List<Neuron> InputsLayer { get; }
         public List<List<Neuron>> HiddenLayers { get; }
         public List<Neuron> OutputsLayer { get; }
 
-        private Seeker seeker;
-        public Seeker Seeker
-        {
-            get
-            {
-                return seeker;
-            }
-            set
-            {
-                if (seeker != null) throw new Exception();
-                seeker = value;
-            }
-        }
         // Initialization SeekerNeuroNetwork
         public NeuralNetwork(int InputsNum, List<int> HiddenLayersNum, int OutputNum, bool Generate = true)
         {
@@ -88,7 +72,7 @@ namespace HNS.NeuralNetwork
                 NextNeuron.NBias = 1.0f / (1.0f + (float)Math.Exp(-sum));
             }
         }
-
+        
         // set all layers baises
         public void SetAllLayerBias(List<double> Inputs)
         {
@@ -138,6 +122,7 @@ namespace HNS.NeuralNetwork
             }
         }
 
+        // Return copy of neural network
         public NeuralNetwork Copy()
         {
             List<int> hidden = new List<int>();
@@ -162,18 +147,21 @@ namespace HNS.NeuralNetwork
             return result;
         }
 
+        // Crossing two neuronal networks
         public void Cross(NeuralNetwork other)
         {
             for (int i = 0; i < HiddenLayers.Count; i++)
             {
                 for (int j = 0; j < HiddenLayers[i].Count; j++)
                 {
-                    if (StaticClass.rnd.NextDouble() > 0.5) HiddenLayers[i][j] = other.HiddenLayers[i][j].Copy();
+                    if (StaticClass.rnd.NextDouble() > 0.5) 
+                        HiddenLayers[i][j] = other.HiddenLayers[i][j].Copy();
                 }
             }
             for (int j = 0; j < OutputsLayer.Count; j++)
             {
-                if (StaticClass.rnd.NextDouble() > 0.5) OutputsLayer[j] = other.OutputsLayer[j].Copy();
+                if (StaticClass.rnd.NextDouble() > 0.5) 
+                    OutputsLayer[j] = other.OutputsLayer[j].Copy();
             }
         }
 

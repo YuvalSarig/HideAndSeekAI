@@ -24,8 +24,6 @@ C:\yuval\כיתה_יג\HNS\HNS\obj\x86\Debug\HNS.csprojAssemblyReference.cache
 C:\yuval\כיתה_יג\HNS\HNS\obj\x86\Debug\HNS.csproj.CopyComplete
 C:\yuval\כיתה_יג\HNS\HNS\obj\x86\Debug\HNS.exe
 C:\yuval\כיתה_יג\HNS\HNS\obj\x86\Debug\HNS.pdb
-C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\hider.xnb
-C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\mask.xnb
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\seeker.xnb
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\HNS.exe
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\HNS.pdb
@@ -49,5 +47,11 @@ C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.exe
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.pdb
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\Arial.xnb
-C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\map.xnb
 C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\obj\x86\Debug\HNS.csprojAssemblyReference.cache
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\Hider\WalkingDown.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\Hider\WalkingLeft.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\Hider\WalkingRight.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\Hider\WalkingUp.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\map1.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\mask1.xnb
+C:\yuval\כיתה_יג\עבודות גמר ופרוייקטים\HNS\HNS\bin\Windows\x86\Debug\Content\Seeker\WalkinDown.xnb

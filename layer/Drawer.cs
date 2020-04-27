@@ -9,24 +9,24 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HNS
 {
-    interface IFocous
+    interface IFocus
     {
         Vector2 Position { get; }
         float Rotation { get; }
     }
 
-    public class Drawer : IFocous
+    public class Drawer : IFocus
     {
         #region data
         public Vector2 Position { get; set; }
         public float Rotation { get; set; }
         Texture2D texture;
         Rectangle? sourceRectangle;
-        Color color;
-        Vector2 origin;
+        protected Color color;
+        protected Vector2 origin;
         protected Vector2 scale;
-        SpriteEffects effects;
-        float layerDepth;
+        protected SpriteEffects effects;
+        protected float layerDepth;
         public string message;
         #endregion
         #region ctor
@@ -51,13 +51,32 @@ namespace HNS
             MainGame.DrawEvent += draw;
 
         }
+        public Drawer( Vector2 position,
+           Rectangle? sourceRectangle, Color color,
+           float rotation, Vector2 origin, Vector2 scale,
+           SpriteEffects effects, float layerDepth)
+        {
+            this.Position = position;
+            this.sourceRectangle = sourceRectangle;
+            this.color = color;
+            this.Rotation = rotation;
+            this.origin = origin;
+            this.scale = scale;
+            this.effects = effects;
+            this.layerDepth = layerDepth;
+            MainGame.DrawEvent += draw;
 
+        }
 
         #endregion
         #region funcs
+
+        // Update objects on screen
         public virtual void update()
         {
         }
+
+        // Draw objects on screen
         public virtual void draw()
         {
             StaticClass.sb.Draw(texture, Position, sourceRectangle,

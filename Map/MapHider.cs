@@ -21,9 +21,9 @@ namespace HNS
         public void initMap(Vector2 LastPos)
         {
             int x = (int)LastPos.X, y = (int)LastPos.Y;
-            for (int i = (int)(-124 * StaticClass.CharacterScale); i < 121 * StaticClass.CharacterScale; i++)
+            for (int i = (int)(-MainGame.hider.animations.First().Value.FrameHeight / 2 * StaticClass.CharacterScale); i < MainGame.hider.animations.First().Value.FrameHeight / 2 * StaticClass.CharacterScale; i++)
             {
-                for (int j = (int)(-104 * StaticClass.CharacterScale); j < 113 * StaticClass.CharacterScale; j++)
+                for (int j = (int)(-MainGame.hider.animations.First().Value.FrameWidth / 2 * StaticClass.CharacterScale); j < -MainGame.hider.animations.First().Value.FrameWidth / 2 * StaticClass.CharacterScale; j++)
                 {
                     if (0 < i + y && StaticClass.HEIGHT * StaticClass.mapScale > i + y && 0 < j + x && StaticClass.WIDTH * StaticClass.mapScale > j + x)
                     {
@@ -36,9 +36,9 @@ namespace HNS
         public void SetHiderOnMap(int x, int y, Vector2 LastPos)
         {
             initMap(LastPos);
-            for (int i = (int)(-124 * StaticClass.CharacterScale); i < 121 * StaticClass.CharacterScale; i++)
+            for (int i = (int)(-MainGame.hider.animations.First().Value.FrameHeight / 2 * StaticClass.CharacterScale); i < MainGame.hider.animations.First().Value.FrameHeight / 2 * StaticClass.CharacterScale; i++)
             {
-                for (int j = (int)(-104 * StaticClass.CharacterScale); j < 113 * StaticClass.CharacterScale; j++)
+                for (int j = (int)(-MainGame.hider.animations.First().Value.FrameWidth / 2 * StaticClass.CharacterScale); j < MainGame.hider.animations.First().Value.FrameWidth / 2 * StaticClass.CharacterScale; j++)
                 {
                     if ( 0 < i + y && StaticClass.HEIGHT * StaticClass.mapScale > i + y && 0 < j + x && StaticClass.WIDTH * StaticClass.mapScale > j + x)
                     {

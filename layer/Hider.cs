@@ -10,73 +10,70 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HNS
 {
-    public class Hider : Drawer
+    public class Hider : Animation.AnimationManagement
     {
-        List<Vector2> cord;
-        List<Vector2> cordPos;
+        private float Speed = 5;
+        public Vector2 Velocity;
+        public Dictionary<string, Animation.Animation> animations;
         Vector2 LastPos;
         protected BaseKeys keys;
-        public Hider(BaseKeys keys, Texture2D texture, Vector2 position,
+        public Hider(Dictionary<string, Animation.Animation> animations, BaseKeys keys, Vector2 position,
           Rectangle? sourceRectangle, Color color,
           float rotation, Vector2 origin, Vector2 scale,
           SpriteEffects effects, float layerDepth) :
-           base( texture, position,
+           base(animations.First().Value, position,
            sourceRectangle, color,
            rotation, origin, scale,
            effects, layerDepth)
         {
+            this.animations = animations;
             this.keys = keys;
-            CreateList();
             MainGame.UpdateEvent += update;
         }
 
-        private void CreateList()
-        {
-            int[] x = { 193, 13, 37, 101, 173 };
-            int[] y = { 228, 227, 57, 7, 63 };
-            cord = new List<Vector2>();
-            cordPos = new List<Vector2>();
-            for (int i = 0; i < x.Length; i++)
-            {
-                cord.Add(new Vector2(x[i], y[i]));
-                cordPos.Add(Vector2.Zero);
-            }
-        }
-
-        private void fillCordPos()
-        {
-            for (int i = 0; i < cordPos.Count; i++)
-            {
-                cordPos[i] = Position + StaticClass.rotate_vector(cord[i] - Position, Rotation, scale.X);
-            }
-        }
-
+        /// <summary>
+        /// Update hider objects on screen
+        /// </summary>
         public override void update()
         {
-            //fillCordPos();
             StaticClass.maph.SetHiderOnMap((int)Position.X, (int)Position.Y, LastPos);
             LastPos = Position;
-            Matrix mat;
-            if (keys.Left())
-            {
-                Rotation -= 0.1f;
-            }
-            if (keys.Right())
-            {
-                Rotation += 0.1f;
-            }
             if (keys.Up())
+                Velocity.Y = -Speed;
+            if (keys.Down())
+                Velocity.Y = Speed;
+            if (keys.Left())
+                Velocity.X = -Speed;
+            if (keys.Right())
+                Velocity.X = Speed;
+
+            if (StaticClass.map[Position + Velocity].ToString() != "Obstacle" && Position.X > 0 && Position.X < StaticClass.WIDTH && Position.Y > 0 && Position.Y < StaticClass.HEIGHT)
             {
-                mat = Matrix.CreateRotationZ(Rotation);
-                Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
-                Position += step * 10;
-                if (StaticClass.map[Position].ToString() == "Obstacle" || Position.X < 0 || Position.X > StaticClass.WIDTH || Position.Y < 0 || Position.Y > StaticClass.HEIGHT)
-                {
-                    Position -= step * 10;
-                }
+                Position += Velocity;
             }
+
+            SetAnimations();
+
             base.update();
+            Velocity = Vector2.Zero;
         }
 
+        /// <summary>
+        /// Set the animations base the direction walk
+        /// </summary>
+        protected virtual void SetAnimations()
+        {
+            if (Position.X > LastPos.X)
+                base.Play(animations["WalkRight"]);
+            else if (Position.X < LastPos.X)
+                base.Play(animations["WalkLeft"]);
+            else if (Position.Y > LastPos.Y)
+                base.Play(animations["WalkDown"]);
+            else if (Position.Y < LastPos.Y)
+                base.Play(animations["WalkUp"]);
+            else
+                base.Stop();
+
+        }
     }
 }

@@ -13,11 +13,11 @@ namespace HNS
 {
     static class StaticClass
     {
+        public static GameTime gameTime;
         public static Map map;
         public static MapHider maph;
         public static int mapScale;
         public static float CharacterScale = 0.3f;
-        public const float STEERSPEED = 0.005f;
         public static Random rnd;
         public static SpriteBatch sb;
         public static KeyboardState ks;
@@ -33,20 +33,27 @@ namespace HNS
         public static int SeekerNum = 50;
         public static int SeekerInputs = 4;
         public static int SeekerOutputs = 2;
-        public static double shakeRate = 0.4;
-        public static Seeker topSeeker;
-        public static Seeker topSeeker2;
+        public static double shakeRate = 0.3;
+        public static Seeker LiveTopSeeker;
+        public static Seeker TopSeeker;
+        public static Seeker TopSeeker2;
         public static List<List<int>> hiddenLayersConfig = new List<List<int>>
         {
             new List<int> { 5 }
         };
         public static Dictionary<string, float> Stats = new Dictionary<string, float>();
-
+        public static Dictionary<string, Animation.Animation> SeekerAnimation = new Dictionary<string, Animation.Animation>();
+        /// <summary>
+        /// Initialize all the values of the variables
+        /// </summary>
+        /// <param name="gd">GraphicsDevice of game</param>
+        /// <param name="Content">ContentManager of game</param>
         public static void init(GraphicsDevice gd, ContentManager Content)
         {
+            SeekerAnimation["WalkDown"] = new Animation.Animation(Content.Load<Texture2D>("Seeker/WalkinDown"), 4);
             font = Content.Load<SpriteFont>("Arial");
             START_TIME = DateTime.Now;
-            map = new Map(Content.Load<Texture2D>("mask"));
+            map = new Map(Content.Load<Texture2D>("mask1"));
             mapScale = 1;
             rnd = new Random();
             sb = new SpriteBatch(gd);
@@ -60,24 +67,29 @@ namespace HNS
             StartSeekerPos = StaticClass.GetRandPos();
             MainGame.UpdateEvent += update;
         }
-        public static Vector2 rotate_vectorX(float rot)
-        {
-            return Vector2.Transform(Vector2.UnitX, Matrix.CreateRotationZ(rot));
-        }
-        public static Vector2 rotate_vectorY(float rot)
-        {
-            return Vector2.Transform(Vector2.UnitY, Matrix.CreateRotationZ(rot));
-        }
+
+        /// <summary>
+        /// Rotate vector
+        /// </summary>
+        /// <param name="vec">vector of position</param>
+        /// <param name="rot">rotate to object</param>
+        /// <param name="scale">scale of vector</param>
+        /// <returns></returns>
         public static Vector2 rotate_vector(Vector2 vec, float rot, float scale)
         {
             return Vector2.Transform(vec, Matrix.CreateRotationZ(rot) * 
                 Matrix.CreateScale(scale));
         }
 
+        /// <summary>
+        /// Update the keys depending on what is pressed on kseyboard
+        /// </summary>
         static void update()
         {
             ks = Keyboard.GetState();
         }
+        
+        // Draw a line on the screen
         public static void drawVec(float dir, Vector2 pos, Color c, float l, int thicc = 10)
         {
             sb.Draw(pixel, pos, null, c, dir, new Vector2(0.5f, 1f),

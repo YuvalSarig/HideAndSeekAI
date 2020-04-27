@@ -41,14 +41,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animation\Animation.cs" />
+    <Compile Include="Animation\AnimationManagement.cs" />
     <Compile Include="Map\Camera.cs" />
-    <Compile Include="layer\Characters.cs" />
+    <Compile Include="layer\Drawer.cs" />
     <Compile Include="NeuralNetwork\Neuron.cs" />
     <Compile Include="NeuralNetwork\NeuralNetwork.cs" />
     <Compile Include="StaticClass.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="layer\Hider.cs" />
-    <Compile Include="Input.cs" />
+    <Compile Include="Animation\Input.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Map\MapHider.cs" />
     <Compile Include="ExternalSaves.cs" />

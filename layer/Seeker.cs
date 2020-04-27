@@ -9,8 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HNS
 {
-    internal class Seeker : Drawer
+    internal class Seeker : Animation.AnimationManagement
     {
+        public Dictionary<string, Animation.Animation> animations;
         public float Score { get; set; }
         public int LifeTime { get; set; }
         public bool Found { get; set; }
@@ -29,33 +30,38 @@ namespace HNS
         // Fitness function
         public float Fitness => Score * Score;
         protected BaseKeys keys;
-        //float LeftVec, RightVec;
 
-        public Seeker(NeuralNetwork.NeuralNetwork Neuralnetwork, BaseKeys keys, Texture2D texture, Vector2 position,
+        public Seeker(Dictionary<string, Animation.Animation> animations, NeuralNetwork.NeuralNetwork Neuralnetwork, BaseKeys keys, Vector2 position,
           Rectangle? sourceRectangle, Color color,
           float rotation, Vector2 origin, Vector2 scale,
           SpriteEffects effects, float layerDepth) :
-           base(texture, position,
+           base(animations.First().Value, position,
            sourceRectangle, color,
            rotation, origin, scale,
            effects, layerDepth)
         {
+            this.animations = animations;
             this.keys = keys;
             LifeTime = 1;
             Score = 0;
             this.Neuralnetwork = Neuralnetwork;
-            Neuralnetwork.Seeker = this;
             Energy = 501;
-            //MainGame.UpdateEvent += update;
+            MainGame.UpdateEvent += update;
 
         }
+        /// <summary>
+        /// Update seeker objects on screen
+        /// </summary>
         public override void update()
         {
             if (Dead) return;
+            
+            if (StaticClass.LiveTopSeeker == null || StaticClass.LiveTopSeeker.Dead || this.Fitness > StaticClass.LiveTopSeeker.Fitness)
+                StaticClass.LiveTopSeeker = this;
+            
             Neuralnetwork.SetAllLayerBias(GetInputs());
             double RotateRight = Neuralnetwork.OutputsLayer[0].NBias;
             double RotateLeft = Neuralnetwork.OutputsLayer[1].NBias;
-
             if (RotateRight > 0.5)
             {
                 Rotation += 0.1f;
@@ -64,12 +70,25 @@ namespace HNS
             {
                 Rotation -= 0.1f;
             }
+
+            //if (RotateRight > RotateLeft)
+            //{
+            //    Rotation += 0.2f;
+            //}
+            //else
+            //{
+            //    Rotation -= 0.2f;
+            //}
+            base.Play(animations["WalkDown"]);
             Move();
 
             base.update();
 
         }
 
+        /// <summary>
+        /// Draw lines on screen
+        /// </summary>
         public override void draw()
         {
             float angele = Rotation + (float)Math.PI / 6;
@@ -81,7 +100,6 @@ namespace HNS
                 temp += step * 2;
             }
             StaticClass.drawVec(Rotation + (float)Math.PI + (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
-            //RightVec = (Position - temp).Length();
             angele = Rotation - (float)Math.PI / 6;
             mat = Matrix.CreateRotationZ(angele);
             step = Vector2.Transform(Vector2.UnitY, mat);
@@ -91,11 +109,12 @@ namespace HNS
                 temp += step * 2;
             }
             StaticClass.drawVec(Rotation + (float)Math.PI - (float)Math.PI / 6, Position, Color.Blue, (Position - temp).Length(), 3);
-            //LeftVec = (Position - temp).Length();
             base.draw();
         }
 
-        // Move the Seeker forward and give score
+        /// <summary>
+        /// Move the Seeker forward and give score
+        /// </summary>
         private void Move()
         {
             if (Dead)
@@ -106,7 +125,7 @@ namespace HNS
             Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
 
             // Move forward
-            Position += step * 10;
+            Position += step * 5;
             // Stuck in obstacle or went out of the map
             if (StaticClass.map[Position].ToString() == "Obstacle" ||
                     Position.X < 0 || Position.X > StaticClass.WIDTH ||
@@ -132,12 +151,17 @@ namespace HNS
             Energy--;
         }
 
+        /// <summary>
+        /// Get the inputs parameters to input layer
+        /// </summary>
+        /// <returns>list of inputs number for neural network</returns>
         private List<double> GetInputs()
         {
             List<double> inputs = new List<double>();
-            float angle;
-            angle = (float)Math.Atan2(MainGame.hider.Position.Y - Position.Y, MainGame.hider.Position.X - Position.X) - (float)Math.PI / 2;
-            inputs.Add(angle);
+            float angle, DeltaAngle;
+            DeltaAngle = (float)Math.Atan2(MainGame.hider.Position.Y - Position.Y, MainGame.hider.Position.X - Position.X) - (float)Math.PI / 2;
+            DeltaAngle = this.Rotation - DeltaAngle;
+            inputs.Add(DeltaAngle);
 
             Matrix mat;
             Vector2 step;
@@ -163,8 +187,13 @@ namespace HNS
             return inputs;
         }
     }
-    internal class SeekerComper : IComparer<Seeker>
+
+    /// <summary>
+    /// This class was made for sort a list 
+    /// </summary>
+    internal class SeekerCompare : IComparer<Seeker>
     {
+        // The compare function
         public int Compare(Seeker Seeker1, Seeker Seeker2)
         {
             float Seeker1Score = Seeker1.Fitness;

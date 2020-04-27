@@ -10,6 +10,6 @@ namespace HNS
     public delegate void DelgtDraw();
     public delegate void DelgtUpdate();
     // enum
-    public enum NeuronTypes { INPUT, HIDDEN, OUTPUT }
+    enum NeuronTypes { INPUT, HIDDEN, OUTPUT }
     enum GroundTypes { Obstacle, Way };
 }

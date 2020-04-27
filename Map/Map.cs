@@ -45,7 +45,7 @@ namespace HNS
                     {
                         gt[x, y] = GroundTypes.Obstacle;
                     }
-                    else if (c[y * map1.Width + x] == c[1])
+                    else if (c[y * map1.Width + x] != c[0])
                     {
                         gt[x, y] = GroundTypes.Way;
                     }

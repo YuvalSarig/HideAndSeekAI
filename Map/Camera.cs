@@ -12,12 +12,13 @@ namespace HNS
     class Camera
     {
         public Matrix Mat { get; private set; }
-        List<IFocous> focus;
+        List<IFocus> focus;
         Viewport vp;
         Vector2 pos;
+        Vector2 Lastpos;
         float zoom;
 
-        public Camera(List<IFocous> focus, Viewport vp, Vector2 pos, float zoom = 1)
+        public Camera(List<IFocus> focus, Viewport vp, Vector2 pos, float zoom = 1)
         {
             this.focus = focus;
             this.vp = vp;
@@ -29,29 +30,28 @@ namespace HNS
 
         void update()
         {
-            //Vector2 sum = new Vector2();
-            //float max = 0;
-            //for (int i = 0; i < focus.Count; i++)
-            //{
-            //    sum += focus[i].Position;
-            //}
-            //sum /= focus.Count;
-            //for (int i = 0; i < focus.Count; i++)
-            //{
-            //    if (Vector2.Distance(sum, focus[i].Position) > max)
+            //    Vector2 v = Vector2.Lerp(Lastpos, focus[0].Position, 0.03f);
+            //    if (StaticClass.LiveTopSeeker != null)
             //    {
-            //        max = Vector2.Distance(sum, focus[i].Position);
+            //        v = Vector2.Lerp(Lastpos ,StaticClass.LiveTopSeeker.Position, 0.03f);
             //    }
-            //}
-            //pos = Vector2.Lerp(pos, focus[0].Position, 0.03f);
 
-            //zoom = MathHelper.Clamp((StaticClass.HEIGHT / 2 - 100f) / max, 0.7f, 1f);
+            //    Vector2 sum = new Vector2();
+            //    float Dis = 0;
 
-            //Mat = Matrix.CreateTranslation(-pos.X, -pos.Y, 0) *
-            //    Matrix.CreateScale(zoom) *
-            //    Matrix.CreateTranslation(vp.Width / 2, vp.Height / 2, 0);
+            //    sum = v + focus[0].Position;
+            //    sum /= 2;
 
-            Mat = Matrix.CreateTranslation(-0, -0, 0);
+            //    Dis = Vector2.Distance(v, focus[0].Position);
+
+            //    pos = Vector2.Lerp(pos, sum, 0.03f);
+
+            //    zoom = MathHelper.Clamp((StaticClass.HEIGHT - 100f) / Dis, 0.7f, 1.2f);
+
+            Mat = Matrix.CreateTranslation(-pos.X, -pos.Y, 0);
+                //Matrix.CreateScale(zoom) *
+                //Matrix.CreateTranslation(vp.Width / 2, vp.Height / 2, 0);
+            //Lastpos = v;
         }
     }
 }

@@ -12,19 +12,23 @@ namespace HNS.NeuralNetwork
         public double[] NWeights { get; }
         public NeuronTypes NType { get; }
 
+        // Constructor for Input Layer
         public Neuron()
         {
             NBias = 0;
             NType = NeuronTypes.INPUT;
         }
 
-        public Neuron(double Bias, NeuronTypes Type, int WeightsNums)
+        // Constructor for neuron
+        public Neuron(double Bias, NeuronTypes Type, int WeightsNum)
         {
             NBias = Bias;
             NType = Type;
-            NWeights = new double[WeightsNums];
-            SetRandomWeights(WeightsNums);
+            NWeights = new double[WeightsNum];
+            SetRandomWeights(WeightsNum);
         }
+
+        // Constructor for neuron
         public Neuron(double Bias, NeuronTypes Type, double[] Weights)
         {
             NBias = Bias;
@@ -36,14 +40,16 @@ namespace HNS.NeuralNetwork
             }
         }
 
-        private void SetRandomWeights(int WeightsNums)
+        // The function generate weights for the weights array
+        private void SetRandomWeights(int WeightsNum)
         {
-            for (int i = 0; i < WeightsNums; i++)
+            for (int i = 0; i < WeightsNum; i++)
             {
                 NWeights[i] = NeuralNetwork.GetRandomWeight();
             }
         }
 
+        // The function return new similar neuron
         public Neuron Copy()
         {
             return new Neuron(NBias, NType, NWeights);
