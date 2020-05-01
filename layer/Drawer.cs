@@ -71,12 +71,16 @@ namespace HNS
         #endregion
         #region funcs
 
-        // Update objects on screen
+        /// <summary>
+        /// Update objects on screen
+        /// </summary>
         public virtual void update()
         {
         }
 
-        // Draw objects on screen
+        /// <summary>
+        /// Draw objects on screen
+        /// </summary>
         public virtual void draw()
         {
             StaticClass.sb.Draw(texture, Position, sourceRectangle,

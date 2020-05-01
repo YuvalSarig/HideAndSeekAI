@@ -11,6 +11,9 @@ namespace HNS
 {
     class View 
     {
+        float dir;
+        Vector2 start;
+        Vector2 l;
         public View()
         {
             
@@ -41,10 +44,11 @@ namespace HNS
 
         public bool FindHider(Vector2 SeekerPos, float rot)
         {
+            //MainGame.DrawEvent += draw;
             if ((SeekerPos - MainGame.hider.Position).Length() < 400)
             {
-                float angele = rot;
-                Matrix mat = Matrix.CreateRotationZ(angele);
+                float angle = rot;
+                Matrix mat = Matrix.CreateRotationZ(angle);
                 Vector2 step = Vector2.Transform(Vector2.UnitY, mat);
                 Vector2 temp = SeekerPos;
 
@@ -58,16 +62,25 @@ namespace HNS
 
                         if (StaticClass.maph.IsHiderFound(temp))
                         {
+                            //start = SeekerPos;
+                            //l = temp;
+                            //dir = angle;
+                            
                             return true;
                         }
                     }
-                    angele += (float)Math.PI / 180;
-                    mat = Matrix.CreateRotationZ(angele);
+                    angle += (float)Math.PI / 180;
+                    mat = Matrix.CreateRotationZ(angle);
                     step = Vector2.Transform(Vector2.UnitY, mat);
                     temp = SeekerPos;
                 }
             }
             return false;
+        }
+        public void draw()
+        {
+
+            StaticClass.drawVec(dir, l, Color.White, (start - l).Length(), 3);
         }
     }
 }

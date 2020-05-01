@@ -33,7 +33,7 @@ namespace HNS
         public static int SeekerNum = 50;
         public static int SeekerInputs = 4;
         public static int SeekerOutputs = 2;
-        public static double shakeRate = 0.3;
+        public static double shakeRate = 0.2f;
         public static Seeker LiveTopSeeker;
         public static Seeker TopSeeker;
         public static Seeker TopSeeker2;
@@ -41,8 +41,12 @@ namespace HNS
         {
             new List<int> { 5 }
         };
+
+        // Dictionary
         public static Dictionary<string, float> Stats = new Dictionary<string, float>();
         public static Dictionary<string, Animation.Animation> SeekerAnimation = new Dictionary<string, Animation.Animation>();
+        public static Dictionary<string, Animation.Animation> HiderAnimation;
+        
         /// <summary>
         /// Initialize all the values of the variables
         /// </summary>
@@ -51,6 +55,13 @@ namespace HNS
         public static void init(GraphicsDevice gd, ContentManager Content)
         {
             SeekerAnimation["WalkDown"] = new Animation.Animation(Content.Load<Texture2D>("Seeker/WalkinDown"), 4);
+            HiderAnimation = new Dictionary<string, Animation.Animation>()
+        {
+          { "WalkUp", new Animation.Animation(Content.Load<Texture2D>("Hider/WalkingUp"), 4) },
+          { "WalkDown", new Animation.Animation(Content.Load<Texture2D>("Hider/WalkingDown"), 4) },
+          { "WalkLeft", new Animation.Animation(Content.Load<Texture2D>("Hider/WalkingLeft"), 4) },
+          { "WalkRight", new Animation.Animation(Content.Load<Texture2D>("Hider/WalkingRight"), 4) },
+        };
             font = Content.Load<SpriteFont>("Arial");
             START_TIME = DateTime.Now;
             map = new Map(Content.Load<Texture2D>("mask1"));
@@ -74,7 +85,7 @@ namespace HNS
         /// <param name="vec">vector of position</param>
         /// <param name="rot">rotate to object</param>
         /// <param name="scale">scale of vector</param>
-        /// <returns></returns>
+        /// <returns>The rotated vector</returns>
         public static Vector2 rotate_vector(Vector2 vec, float rot, float scale)
         {
             return Vector2.Transform(vec, Matrix.CreateRotationZ(rot) * 
@@ -88,14 +99,24 @@ namespace HNS
         {
             ks = Keyboard.GetState();
         }
-        
-        // Draw a line on the screen
-        public static void drawVec(float dir, Vector2 pos, Color c, float l, int thicc = 10)
+        /// <summary>
+        /// Draw a line on the screen
+        /// </summary>
+        /// <param name="dir">Direction of the vector</param>
+        /// <param name="pos">Position of the vector</param>
+        /// <param name="c">Color of the line</param>
+        /// <param name="l">length of vector</param>
+        /// <param name="thick">thickness of line</param> 
+        public static void drawVec(float dir, Vector2 pos, Color c, float l, int thick = 10)
         {
             sb.Draw(pixel, pos, null, c, dir, new Vector2(0.5f, 1f),
-                new Vector2(thicc, l), 0, 0);
+                new Vector2(thick, l), 0, 0);
         }
-        //Make Random Position Vectors while the position not on obstacle
+ 
+        /// <summary>
+        /// Make Random Position Vectors while the position not on obstacle
+        /// </summary>
+        /// <returns>Vector of position</returns>
         public static Vector2 GetRandPos()
         {
             Vector2 v = new Vector2(rnd.Next(WIDTH * mapScale), rnd.Next(HEIGHT * mapScale));

@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HNS
 {
-
     public class MainGame : Game
     {
         GraphicsDeviceManager GraphicsDeviceM;
@@ -55,16 +54,9 @@ namespace HNS
                        new Vector2(StaticClass.mapScale), SpriteEffects.None, 0);
 
             InitSeekers();
-            var Dic = new Dictionary<string, Animation.Animation>()
-        {
-          { "WalkUp", new Animation.Animation(Content.Load<Texture2D>("Hider/WalkingUp"), 4) },
-          { "WalkDown", new Animation.Animation(Content.Load<Texture2D>("Hider/WalkingDown"), 4) },
-          { "WalkLeft", new Animation.Animation(Content.Load<Texture2D>("Hider/WalkingLeft"), 4) },
-          { "WalkRight", new Animation.Animation(Content.Load<Texture2D>("Hider/WalkingRight"), 4) },
-        };
-            hider = new Hider(Dic, new UserKeys(Keys.Left, Keys.Right, Keys.Up, Keys.Down),
+            hider = new Hider(StaticClass.HiderAnimation, new UserKeys(Keys.Left, Keys.Right, Keys.Up, Keys.Down),
                        StaticClass.GetRandPos(),
-                       null, Color.White, 0, new Vector2(Dic.First().Value.FrameWidth / 2, Dic.First().Value.FrameHeight / 2),
+                       null, Color.White, 0, new Vector2(StaticClass.HiderAnimation.First().Value.FrameWidth / 2, StaticClass.HiderAnimation.First().Value.FrameHeight / 2),
                        new Vector2(StaticClass.CharacterScale), 0, 0);
             while ((SeekerPop[0].Position - hider.Position).Length() < 400)
             {
@@ -110,6 +102,7 @@ namespace HNS
                 null, null, null, null, cam.Mat);
 
             DrawEvent?.Invoke();
+
             StaticClass.sb.DrawString(StaticClass.font, "Iteration number: " + StaticClass.PopulationNumber, new Vector2(0, 0), Color.White);
             StaticClass.sb.DrawString(StaticClass.font, "Last Fitness: " + StaticClass.Stats["LastFitness"], new Vector2(0, 20), Color.White);
             StaticClass.sb.DrawString(StaticClass.font, "Max Fitness: " + StaticClass.Stats["MaxFitness"], new Vector2(0, 40), Color.White);
@@ -126,7 +119,7 @@ namespace HNS
         private void InitSeekers()
         {
             StaticClass.StartSeekerRot = (float)StaticClass.rnd.NextDouble() * MathHelper.TwoPi;
-            
+
             for (int i = 0; i < StaticClass.SeekerNum; i++)
             {
                 NeuralNetwork.NeuralNetwork Neuralnetwork = new NeuralNetwork.NeuralNetwork(
@@ -202,7 +195,7 @@ namespace HNS
                     StaticClass.TopSeeker.Neuralnetwork.Copy();
                 Neuralnetwork.ChangeNeuronWeights(StaticClass.shakeRate);
                 SeekerPop.Add(new Seeker(StaticClass.SeekerAnimation, Neuralnetwork, new BotKeys(), StaticClass.StartSeekerPos,
-                       null, Color.Blue, StaticClass.StartSeekerRot, 
+                       null, Color.Blue, StaticClass.StartSeekerRot,
                        new Vector2(StaticClass.SeekerAnimation.First().Value.FrameWidth / 2, StaticClass.SeekerAnimation.First().Value.FrameHeight / 2),
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }
@@ -213,7 +206,7 @@ namespace HNS
                     StaticClass.TopSeeker2.Neuralnetwork.Copy();
                 Neuralnetwork.ChangeNeuronWeights(StaticClass.shakeRate);
                 SeekerPop.Add(new Seeker(StaticClass.SeekerAnimation, Neuralnetwork, new BotKeys(), StaticClass.StartSeekerPos,
-                       null, Color.Red, StaticClass.StartSeekerRot, 
+                       null, Color.Red, StaticClass.StartSeekerRot,
                        new Vector2(StaticClass.SeekerAnimation.First().Value.FrameWidth / 2, StaticClass.SeekerAnimation.First().Value.FrameHeight / 2),
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }
@@ -225,7 +218,7 @@ namespace HNS
                         StaticClass.rnd.Next(StaticClass.hiddenLayersConfig.Count)],
                     StaticClass.SeekerOutputs);
                 SeekerPop.Add(new Seeker(StaticClass.SeekerAnimation, Neuralnetwork, new BotKeys(), StaticClass.StartSeekerPos,
-                       null, Color.White, StaticClass.StartSeekerRot, 
+                       null, Color.White, StaticClass.StartSeekerRot,
                        new Vector2(StaticClass.SeekerAnimation.First().Value.FrameWidth / 2, StaticClass.SeekerAnimation.First().Value.FrameHeight / 2),
                        new Vector2(StaticClass.CharacterScale), 0, 0));
             }

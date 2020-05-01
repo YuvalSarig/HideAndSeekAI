@@ -13,7 +13,9 @@ namespace HNS.NeuralNetwork
         public List<List<Neuron>> HiddenLayers { get; }
         public List<Neuron> OutputsLayer { get; }
 
-        // Initialization SeekerNeuroNetwork
+        /// <summary>
+        /// Initialization SeekerNeuroNetwork
+        /// </summary>
         public NeuralNetwork(int InputsNum, List<int> HiddenLayersNum, int OutputNum, bool Generate = true)
         {
             InputsLayer = new List<Neuron>();
@@ -27,7 +29,12 @@ namespace HNS.NeuralNetwork
             if (Generate) InitializationLayers(InputsNum, HiddenLayersNum, OutputNum);
         }
 
-        // Initialization layers by the number of neurons of each layer
+        /// <summary>
+        /// Initialization layers by the number of neurons of each layer
+        /// </summary>
+        /// <param name="InputsNum">Number of inputs neurons</param>
+        /// <param name="hiddenLayers">list of hidden layers neurons</param>
+        /// <param name="OutputNum">Number of outputs neurons</param>
         private void InitializationLayers(int InputsNum, List<int> hiddenLayers, int OutputNum)
         {
             // Initialization input layer
@@ -52,13 +59,20 @@ namespace HNS.NeuralNetwork
             }
         }
 
-        // Return random double number between -1 to 1
+        /// <summary>
+        /// Return random double number between -1 to 1
+        /// </summary>
+        /// <returns>number between -1 to 1</returns>
         public static double GetRandomWeight()
         {
             return StaticClass.rnd.NextDouble() * 2 - 1;
         }
 
-        // Set next layer bais
+        /// <summary>
+        /// Set next layer bais
+        /// </summary>
+        /// <param name="PreviousLayer">List of previous layer</param>
+        /// <param name="NextLayer">List of next layer/param>
         private void SetNextLyerBias(List<Neuron> PreviousLayer, List<Neuron> NextLayer)
         {
             foreach (Neuron NextNeuron in NextLayer)
@@ -72,8 +86,11 @@ namespace HNS.NeuralNetwork
                 NextNeuron.NBias = 1.0f / (1.0f + (float)Math.Exp(-sum));
             }
         }
-        
-        // set all layers baises
+
+        /// <summary>
+        /// set all layers baises
+        /// </summary>
+        /// <param name="Inputs">Neuron list of input layer</param>
         public void SetAllLayerBias(List<double> Inputs)
         {
             // Set Bais of input layers
@@ -92,7 +109,10 @@ namespace HNS.NeuralNetwork
             SetNextLyerBias(HiddenLayers[HiddenLayers.Count - 1], OutputsLayer);
         }
 
-        // Change neuron weights values
+        /// <summary>
+        /// Change neuron weights values
+        /// </summary>
+        /// <param name="ShakingRate">Shaking rate</param>
         public void ChangeNeuronWeights(double ShakingRate)
         {
             // Change Hidden Layer weights values
@@ -122,7 +142,10 @@ namespace HNS.NeuralNetwork
             }
         }
 
-        // Return copy of neural network
+        /// <summary>
+        /// Return copy of neural network
+        /// </summary>
+        /// <returns>copy of neural network</returns>
         public NeuralNetwork Copy()
         {
             List<int> hidden = new List<int>();
@@ -147,7 +170,10 @@ namespace HNS.NeuralNetwork
             return result;
         }
 
-        // Crossing two neuronal networks
+        /// <summary>
+        /// Crossing two neuronal networks
+        /// </summary>
+        /// <param name="other">Second neural network</param>
         public void Cross(NeuralNetwork other)
         {
             for (int i = 0; i < HiddenLayers.Count; i++)
@@ -164,6 +190,5 @@ namespace HNS.NeuralNetwork
                     OutputsLayer[j] = other.OutputsLayer[j].Copy();
             }
         }
-
     }
 }

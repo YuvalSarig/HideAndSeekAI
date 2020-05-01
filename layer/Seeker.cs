@@ -55,30 +55,22 @@ namespace HNS
         public override void update()
         {
             if (Dead) return;
-            
+
             if (StaticClass.LiveTopSeeker == null || StaticClass.LiveTopSeeker.Dead || this.Fitness > StaticClass.LiveTopSeeker.Fitness)
                 StaticClass.LiveTopSeeker = this;
-            
+
             Neuralnetwork.SetAllLayerBias(GetInputs());
             double RotateRight = Neuralnetwork.OutputsLayer[0].NBias;
             double RotateLeft = Neuralnetwork.OutputsLayer[1].NBias;
-            if (RotateRight > 0.5)
-            {
-                Rotation += 0.1f;
-            }
-            if (RotateLeft > 0.5)
-            {
-                Rotation -= 0.1f;
-            }
 
-            //if (RotateRight > RotateLeft)
-            //{
-            //    Rotation += 0.2f;
-            //}
-            //else
-            //{
-            //    Rotation -= 0.2f;
-            //}
+            if (RotateRight > RotateLeft)
+            {
+                Rotation += 0.2f;
+            }
+            else
+            {
+                Rotation -= 0.2f;
+            }
             base.Play(animations["WalkDown"]);
             Move();
 
@@ -185,22 +177,24 @@ namespace HNS
                 temp = Position;
             }
             return inputs;
+
         }
     }
 
-    /// <summary>
-    /// This class was made for sort a list 
-    /// </summary>
-    internal class SeekerCompare : IComparer<Seeker>
-    {
-        // The compare function
-        public int Compare(Seeker Seeker1, Seeker Seeker2)
+        /// <summary>
+        /// This class was made for sort a list 
+        /// </summary>
+        internal class SeekerCompare : IComparer<Seeker>
         {
-            float Seeker1Score = Seeker1.Fitness;
-            if (Seeker1.Energy == 0) Seeker1Score -= 100;
-            float Seeker2Score = Seeker2.Fitness;
-            if (Seeker2.Energy == 0) Seeker2Score -= 100;
-            return Seeker1Score.CompareTo(Seeker2Score);
+            // The compare function
+            public int Compare(Seeker Seeker1, Seeker Seeker2)
+            {
+                float Seeker1Score = Seeker1.Fitness;
+                if (Seeker1.Energy == 0) Seeker1Score -= 100;
+                float Seeker2Score = Seeker2.Fitness;
+                if (Seeker2.Energy == 0) Seeker2Score -= 100;
+                return Seeker1Score.CompareTo(Seeker2Score);
+            }
         }
-    }
+    
 }

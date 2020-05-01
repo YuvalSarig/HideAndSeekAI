@@ -10,18 +10,18 @@
   <Class Name="HNS.MainGame" Collapsed="true">
     <Position X="8" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAFAAAgAACAwAAAoAIQAACAAAAAAAABAAEAAAAAAQ=</HashCode>
+      <HashCode>AAQAFAAAgAACAwACAoAIQAACAAAAAAAAAAAEAAAAAAQ=</HashCode>
       <FileName>MainGame.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HNS.StaticClass" Collapsed="true">
     <Position X="8" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABIEGQgCAQACAAMSEAQAAAIAAAQAEAIAEBAIADDEEAQ=</HashCode>
+      <HashCode>ABIEEQgCCQACAAsSEASACAIAAAQAGAIAEBACABBEEAQ=</HashCode>
       <FileName>StaticClass.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HNS.SeekerComper" Collapsed="true">
+  <Class Name="HNS.SeekerCompare" Collapsed="true">
     <Position X="3" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
@@ -32,7 +32,7 @@
   <Class Name="HNS.MapHider" Collapsed="true">
     <Position X="6.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAEEAgAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAEEA4AAAAAACAABAAAAAAAAA=</HashCode>
       <FileName>Map\MapHider.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -46,14 +46,14 @@
   <Class Name="HNS.Camera" Collapsed="true">
     <Position X="8.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABAAAAAAAAAAAJAAAAAAAAAAAAAAEAAkAAA=</HashCode>
+      <HashCode>AEAAAAAAABAAAAAAAAAAAJAAAAAAAAAAAAAAEAAkAAA=</HashCode>
       <FileName>Map\Camera.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HNS.View" Collapsed="true">
     <Position X="6.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAAEAABACAAAAAgAAIAAAAAAAAAAAAABAAAAABAAAA=</HashCode>
       <FileName>View.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -61,21 +61,21 @@
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
-      <FileName>Input.cs</FileName>
+      <FileName>Animation\Input.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HNS.UserKeys" Collapsed="true">
     <Position X="6" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAACAAAAAAAAAAAAAAAIAAAACACAAgAAgAI=</HashCode>
-      <FileName>Input.cs</FileName>
+      <FileName>Animation\Input.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HNS.BotKeys" Collapsed="true">
     <Position X="3.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAACAAAAAAAAAAAAAAAIAAAACACAAgAEgAI=</HashCode>
-      <FileName>Input.cs</FileName>
+      <FileName>Animation\Input.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HNS.NeuralNetwork.Neuron" Collapsed="true">
@@ -88,7 +88,7 @@
   <Class Name="HNS.NeuralNetwork.NeuralNetwork" Collapsed="true">
     <Position X="3" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAAAgAEAAAAAAAAgEgAAAAABAACAAAQAWEA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAgEgAAAAABAACAAAQAGEA=</HashCode>
       <FileName>NeuralNetwork\NeuralNetwork.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -96,29 +96,36 @@
     <Position X="1.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAIAgAAIAAAAGAAAAAgCAAAQAAAAEACA=</HashCode>
-      <FileName>layer\Characters.cs</FileName>
+      <FileName>layer\Drawer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="HNS.Hider" Collapsed="true">
-    <Position X="0.5" Y="3" Width="1.5" />
+    <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAIAAAAAABAAACAEAAAQAAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AQAAAAAAAAAIAAAAAAAAAAABAAAAUAAAAAAAAAAEAAA=</HashCode>
       <FileName>layer\Hider.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HNS.Seeker" Collapsed="true">
-    <Position X="2.5" Y="3" Width="1.5" />
+    <Position X="2.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAgAABAAIAIAAwAACIEAAAAAAAEAAAAAAAACAAEAAA=</HashCode>
+      <HashCode>AQAgAABAAIAIAAwAAKIEAAAAAAAEEAAAAAAACAAEAAA=</HashCode>
       <FileName>layer\Seeker.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="HNS.IFocous" Collapsed="true">
+  <Class Name="HNS.Animation.AnimationManagement" Collapsed="true">
+    <Position X="1.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAIAAIAAAAAAAAAAoAAAAAAEAAA=</HashCode>
+      <FileName>Animation\AnimationManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="HNS.IFocus" Collapsed="true">
     <Position X="1.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>layer\Characters.cs</FileName>
+      <FileName>layer\Drawer.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Delegate Name="HNS.DelgtDraw" Collapsed="true">
